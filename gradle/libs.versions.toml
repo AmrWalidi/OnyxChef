@@ -13,6 +13,7 @@ lottie = "3.4.0"
 retrofit = "2.11.0"
 moshi = "1.15.1"
 gridlayout = "1.0.0"
+lifecycleViewmodelKtx = "2.8.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi",version.ref = "retrofit" }
 moshi = { module = "com.squareup.moshi:moshi",version.ref = "moshi" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin",version.ref = "moshi" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 
 
 [plugins]

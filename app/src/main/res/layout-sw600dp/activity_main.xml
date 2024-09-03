@@ -1,384 +1,396 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainFragement"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/white"
-    android:paddingStart="10dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="16dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="66dp"
-        android:layout_height="26dp"
-        app:layout_constraintBottom_toBottomOf="@+id/paner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/paner"
-        app:srcCompat="@drawable/onxpos_logo" />
-
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.android.chefapp.viewmodel.MainViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/paner"
-        android:layout_width="916dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edges"
-        android:backgroundTint="@color/background"
-        android:paddingStart="24dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/mainFragement"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
         <ImageView
-            android:id="@+id/mainChef"
-            android:layout_width="30dp"
-            android:layout_height="43dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/logo"
+            android:layout_width="66dp"
+            android:layout_height="26dp"
+            app:layout_constraintBottom_toBottomOf="@+id/paner"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/chef" />
+            app:layout_constraintTop_toTopOf="@+id/paner"
+            app:srcCompat="@drawable/onxpos_logo" />
 
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/paner"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28.5dp"
-            android:fontFamily="@font/almarai"
-            android:textColor="#075060"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/mainChef"
-            app:layout_constraintTop_toTopOf="@+id/mainChef"
-            tools:text="username" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/almarai"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/mainChef"
-            app:layout_constraintStart_toStartOf="@+id/username"
-            tools:text="17-5-2022" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/rounded_edges"
+            android:backgroundTint="@color/background"
+            android:paddingStart="24dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="12dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/side_bar"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ImageView
+                android:id="@+id/mainChef"
+                android:layout_width="30dp"
+                android:layout_height="43dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/chef" />
+
+            <TextView
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28.5dp"
+                android:fontFamily="@font/almarai"
+                android:textColor="#075060"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@{viewmodel.user.userName}"
+                app:layout_constraintStart_toEndOf="@+id/mainChef"
+                app:layout_constraintTop_toTopOf="@+id/mainChef"
+                tools:text="Ahmed-1" />
 
-                <ImageView
-                    android:id="@+id/newIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_new" />
-
-                <TextView
-                    android:id="@+id/newText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:text="New"
-                    android:textColor="#2FD34B"
-                    app:layout_constraintEnd_toEndOf="@+id/newIcon"
-                    app:layout_constraintStart_toStartOf="@+id/newIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/newIcon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/almarai"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/mainChef"
+                app:layout_constraintStart_toStartOf="@+id/username"
+                tools:text="17-5-2022" />
 
-                <ImageView
-                    android:id="@+id/delayedIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/delayedText"
-                    app:layout_constraintStart_toStartOf="@+id/delayedText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_delayed" />
-
-                <TextView
-                    android:id="@+id/delayedText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:text="Delayed"
-                    android:textColor="#FF2654"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/delayedIcon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/changedIcon"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/changedText"
-                    app:layout_constraintStart_toStartOf="@+id/changedText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_changed" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/changedText"
+                    <ImageView
+                        android:id="@+id/newIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_new" />
+
+                    <TextView
+                        android:id="@+id/newText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="New"
+                        android:textColor="#2FD34B"
+                        app:layout_constraintEnd_toEndOf="@+id/newIcon"
+                        app:layout_constraintStart_toStartOf="@+id/newIcon"
+                        app:layout_constraintTop_toBottomOf="@+id/newIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Changed"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/changedIcon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content">
 
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
+                    <ImageView
+                        android:id="@+id/delayedIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@+id/delayedText"
+                        app:layout_constraintStart_toStartOf="@+id/delayedText"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_delayed" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/delayedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="Delayed"
+                        android:textColor="#FF2654"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/delayedIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:id="@+id/canceledIcon"
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/canceledText"
-                    app:layout_constraintStart_toStartOf="@+id/canceledText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_cancelled" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/canceledText"
+                    <ImageView
+                        android:id="@+id/changedIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@+id/changedText"
+                        app:layout_constraintStart_toStartOf="@+id/changedText"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_changed" />
+
+                    <TextView
+                        android:id="@+id/changedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Changed"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/changedIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Canceled"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/canceledIcon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+                    android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/canceledIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@+id/canceledText"
+                        app:layout_constraintStart_toStartOf="@+id/canceledText"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_cancelled" />
 
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="38dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="31dp"
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="#B5B2B2"
-        app:layout_constraintEnd_toEndOf="@+id/logo"
-        app:layout_constraintStart_toStartOf="@+id/logo"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+                    <TextView
+                        android:id="@+id/canceledText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Canceled"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/canceledIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/mainFragment"
-        android:name="com.example.android.chefapp.ui.OrdersFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/paner"
-        app:layout_constraintTop_toBottomOf="@+id/paner"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout="@layout/fragment_summary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="71dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20.5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5">
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="38dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="31dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="#B5B2B2"
+            app:layout_constraintEnd_toEndOf="@+id/logo"
+            app:layout_constraintStart_toStartOf="@+id/logo"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="72dp"
-                android:layout_height="66dp">
-
-                <ImageView
-                    android:id="@+id/orderIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/orderText"
-                    app:layout_constraintStart_toStartOf="@+id/orderText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/order" />
-
-                <TextView
-                    android:id="@+id/orderText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/almarai"
-                    android:text="Orders"
-                    android:textColor="#A5A5A5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/orderIcon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="72dp"
-                android:layout_height="66dp"
-                android:layout_marginVertical="20dp">
-
-                <ImageView
-                    android:id="@+id/histroyIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/history" />
-
-                <TextView
-                    android:id="@+id/historyText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/almarai"
-                    android:text="History"
-                    android:textColor="#A5A5A5"
-                    app:layout_constraintEnd_toEndOf="@+id/histroyIcon"
-                    app:layout_constraintStart_toStartOf="@+id/histroyIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/histroyIcon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="72dp"
-                android:layout_height="66dp">
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/summary" />
-
-                <TextView
-                    android:id="@+id/summaryText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Summary"
-                    android:textColor="#A5A5A5"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView10"
-                    app:layout_constraintStart_toStartOf="@+id/imageView10"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView10" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/mainFragment"
+            android:name="com.example.android.chefapp.ui.OrdersFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="@id/paner"
+            app:layout_constraintTop_toBottomOf="@+id/paner"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout="@layout/fragment_summary" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="72dp"
-                android:layout_height="66dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/side_bar"
+            android:layout_width="71dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20.5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider5">
 
-                <ImageView
-                    android:id="@+id/languageIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/languageText"
-                    app:layout_constraintStart_toStartOf="@+id/languageText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_language" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/languageText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:text="Language"
-                    android:textColor="#9D9D9D"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/languageIcon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="72dp"
+                    android:layout_height="66dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="72dp"
-                android:layout_height="66dp"
-                android:layout_marginTop="20dp">
+                    <ImageView
+                        android:id="@+id/orderIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@+id/orderText"
+                        app:layout_constraintStart_toStartOf="@+id/orderText"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/order" />
 
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/logoutText"
-                    app:layout_constraintStart_toStartOf="@+id/logoutText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/logout" />
+                    <TextView
+                        android:id="@+id/orderText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/almarai"
+                        android:text="Orders"
+                        android:textColor="#A5A5A5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/orderIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/logoutText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:text="Logout"
-                    android:textColor="#EB1D24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView12" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="72dp"
+                    android:layout_height="66dp"
+                    android:layout_marginVertical="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/histroyIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/history" />
+
+                    <TextView
+                        android:id="@+id/historyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/almarai"
+                        android:text="History"
+                        android:textColor="#A5A5A5"
+                        app:layout_constraintEnd_toEndOf="@+id/histroyIcon"
+                        app:layout_constraintStart_toStartOf="@+id/histroyIcon"
+                        app:layout_constraintTop_toBottomOf="@+id/histroyIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="72dp"
+                    android:layout_height="66dp">
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/summary" />
+
+                    <TextView
+                        android:id="@+id/summaryText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Summary"
+                        android:textColor="#A5A5A5"
+                        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+                        app:layout_constraintStart_toStartOf="@+id/imageView10"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="72dp"
+                    android:layout_height="66dp">
+
+                    <ImageView
+                        android:id="@+id/languageIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@+id/languageText"
+                        app:layout_constraintStart_toStartOf="@+id/languageText"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_language" />
+
+                    <TextView
+                        android:id="@+id/languageText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="Language"
+                        android:textColor="#9D9D9D"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/languageIcon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="72dp"
+                    android:layout_height="66dp"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@+id/logoutText"
+                        app:layout_constraintStart_toStartOf="@+id/logoutText"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/logout" />
+
+                    <TextView
+                        android:id="@+id/logoutText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="Logout"
+                        android:textColor="#EB1D24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>

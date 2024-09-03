@@ -2,14 +2,12 @@ package com.example.android.chefapp.network.data.response
 
 import com.squareup.moshi.Json
 
-data class ResponseBody(
+data class BaseResponse<T>(
     @Json(name = "Data")
-    val data: ResponseData,
+    val data: T?,
     @Json(name = "Result")
     val result: ResponseResult
 )
-
-interface ResponseData
 
 data class ResponseResult(
     @Json(name = "ErrNo")
