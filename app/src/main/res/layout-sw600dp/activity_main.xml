@@ -8,6 +8,7 @@
             name="viewmodel"
             type="com.example.android.chefapp.viewmodel.MainViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainFragement"
         android:layout_width="match_parent"
@@ -57,10 +58,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28.5dp"
                 android:fontFamily="@font/almarai"
+                android:text="@{viewmodel.user.userName}"
                 android:textColor="#075060"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="@{viewmodel.user.userName}"
                 app:layout_constraintStart_toEndOf="@+id/mainChef"
                 app:layout_constraintTop_toTopOf="@+id/mainChef"
                 tools:text="Ahmed-1" />
@@ -70,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/almarai"
-                android:text="TextView"
+                android:text="@{viewmodel.user.getDate}"
                 app:layout_constraintBottom_toBottomOf="@+id/mainChef"
                 app:layout_constraintStart_toStartOf="@+id/username"
                 tools:text="17-5-2022" />
@@ -230,7 +231,7 @@
             app:layout_constraintStart_toStartOf="@id/paner"
             app:layout_constraintTop_toBottomOf="@+id/paner"
             app:layout_constraintVertical_bias="0.0"
-            tools:layout="@layout/fragment_summary" />
+            tools:layout="@layout/fragment_orders" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/side_bar"
@@ -242,6 +243,7 @@
             app:layout_constraintTop_toBottomOf="@+id/divider5">
 
             <LinearLayout
+                android:id="@+id/linearLayout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"

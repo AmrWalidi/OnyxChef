@@ -2,7 +2,13 @@ package com.example.android.chefapp.domain
 
 import com.squareup.moshi.Json
 
-data class User(
+class User(
     @Json(name = "USR_NM")
-    val userName : String
-)
+    val userName: String,
+
+    @Json(name = "LOGIN")
+    private val loginData: String
+) {
+
+    val getDate = loginData.split(' ')[0].replace('/', '-')
+}

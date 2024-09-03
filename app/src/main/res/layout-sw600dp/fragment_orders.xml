@@ -17,10 +17,13 @@
             android:id="@+id/orders_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="33dp"
             android:fontFamily="@font/almarai"
+            android:text="Orders ( 0 )"
             android:textColor="@color/primaryColor"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/orders_body"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Orders ( 5 )" />
