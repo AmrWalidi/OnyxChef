@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.OrdersFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="@color/background"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="15dp">
+
+
+        <TextView
+            android:id="@+id/orders_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/almarai"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Orders ( 5 )" />
+
+        <Button
+            android:id="@+id/refresh_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryColor"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/refresh"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:icon="@drawable/ic_refresh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/pagination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/refresh_button"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/no_prev_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="(4)"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/prev_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primaryColor"
+                android:contentDescription="@string/previous_button"
+                android:textSize="20sp"
+                app:icon="@drawable/arrow_back" />
+
+            <TextView
+                android:id="@+id/page_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/almarai"
+                android:text="TextView"
+                android:textColor="@color/primaryColor"
+                android:textSize="20sp"
+                tools:text="1/4" />
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primaryColor"
+                android:contentDescription="@string/next_button"
+                android:textSize="20sp"
+                app:icon="@drawable/arrow_forward" />
+
+            <TextView
+                android:id="@+id/no_next_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/almarai"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="(11)" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/orders_body"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pagination" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pagination"
+            tools:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/empty_animation" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/almarai"
+                android:text="@string/no_order_yet"
+                android:textColor="#898989"
+                tools:layout_editor_absoluteX="486dp"
+                tools:layout_editor_absoluteY="420dp" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="#FCFCFC"
+    android:paddingStart="14dp"
+    android:paddingTop="19dp"
+    android:paddingEnd="28dp"
+    android:paddingBottom="23dp">
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/almarai"
+        android:textColor="#6A6A6A"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="# Order No 645263" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E6FBFF"
+        android:fontFamily="@font/almarai"
+        android:includeFontPadding="false"
+        android:paddingVertical="3dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="3dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="3dp"
+        android:text="@string/ready"
+        android:textColor="@color/primaryColor"
+        android:textSize="15sp"
+        app:iconPadding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView13"
+        app:strokeColor="#112469"
+        app:strokeWidth="1dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
