@@ -1,4 +1,4 @@
-package com.example.android.chefapp.network.data.request
+package com.example.android.chefapp.network.request
 
 import com.squareup.moshi.Json
 

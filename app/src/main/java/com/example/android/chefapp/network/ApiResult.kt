@@ -1,5 +1,6 @@
 package com.example.android.chefapp.network
 
+import com.example.android.chefapp.network.response.BaseResponse
 import retrofit2.HttpException
 import retrofit2.Response
 
@@ -12,7 +13,7 @@ fun <T : Any> handleApi(
     execute: () -> Response<T>
 ) = try {
     val response: Response<T> = execute()
-    val body = response.body()
+    val body  = response.body()
     if (response.isSuccessful && body != null) {
         ApiSuccess(body)
     } else {

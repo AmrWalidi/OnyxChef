@@ -1,10 +1,10 @@
-package com.example.android.chefapp.network.data.response
+package com.example.android.chefapp.network.response
 
 import com.squareup.moshi.Json
 
 data class BaseResponse<T>(
     @Json(name = "Data")
-    val data: T?,
+    val data: T,
     @Json(name = "Result")
     val result: ResponseResult
 )

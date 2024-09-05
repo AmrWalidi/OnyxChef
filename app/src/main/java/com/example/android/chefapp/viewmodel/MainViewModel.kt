@@ -1,41 +1,48 @@
 package com.example.android.chefapp.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.chefapp.domain.User
-import com.example.android.chefapp.network.OnyxRmsApi
-import com.example.android.chefapp.network.data.request.BaseRequest
-import com.example.android.chefapp.network.data.request.user.UserRequestValue
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.android.chefapp.database.getDatabase
+import com.example.android.chefapp.domain.user.User
+import com.example.android.chefapp.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application : Application) : AndroidViewModel(application) {
 
-    private val _user = MutableLiveData<User>()
+    private val database = getDatabase(application)
+    private val repo = UserRepository(database)
 
-    val user: LiveData<User>
-        get() = _user
+    val user = MutableLiveData<User>()
+
 
     init {
-        viewModelScope.launch(Dispatchers.Default) {
-            getUserDetail()
+        viewModelScope.launch {
+             user.value = repo.getCurrentUser()
+        }
+
+    }
+
+    fun login() {
+        viewModelScope.launch {
+            user.value = repo.login("123456")
         }
     }
 
-    private suspend fun getUserDetail() {
-
-        val response = OnyxRmsApi
-            .userRetrofitService
-            .getUserDetails(BaseRequest(UserRequestValue(password = "123456")))
-
-
-        withContext(Dispatchers.Main) {
-
-            _user.value = response.data?.userData
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return MainViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
 

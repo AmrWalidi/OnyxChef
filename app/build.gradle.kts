@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -52,6 +53,10 @@ dependencies {
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

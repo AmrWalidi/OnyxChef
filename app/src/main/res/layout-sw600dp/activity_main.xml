@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/almarai"
-                android:text="@{viewmodel.user.getDate}"
+                android:text="@{viewmodel.user.loginDate}"
                 app:layout_constraintBottom_toBottomOf="@+id/mainChef"
                 app:layout_constraintStart_toStartOf="@+id/username"
                 tools:text="17-5-2022" />
