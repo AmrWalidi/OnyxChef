@@ -1,6 +1,5 @@
 package com.example.android.chefapp.network
 
-import com.example.android.chefapp.network.response.BaseResponse
 import retrofit2.HttpException
 import retrofit2.Response
 

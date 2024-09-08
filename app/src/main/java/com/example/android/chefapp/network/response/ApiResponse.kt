@@ -2,14 +2,14 @@ package com.example.android.chefapp.network.response
 
 import com.squareup.moshi.Json
 
-data class BaseResponse<T>(
+data class ApiResponse<T>(
     @Json(name = "Data")
     val data: T,
     @Json(name = "Result")
-    val result: ResponseResult
+    val result: ApiResult
 )
 
-data class ResponseResult(
+data class ApiResult(
     @Json(name = "ErrNo")
     val errNo: Int,
     @Json(name = "ErrMsg")

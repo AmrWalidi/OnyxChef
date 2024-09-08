@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28.5dp"
                 android:fontFamily="@font/almarai"
-                android:text="@{viewmodel.user.userName}"
+                android:text="@{viewmodel.user.username}"
                 android:textColor="#075060"
                 android:textSize="18sp"
                 android:textStyle="bold"
