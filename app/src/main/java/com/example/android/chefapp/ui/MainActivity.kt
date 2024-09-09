@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val binding: ActivityMainBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_login)
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.viewmodel = viewModel
 

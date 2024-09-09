@@ -32,15 +32,26 @@ class LoginActivity : AppCompatActivity() {
         viewModel.password.observe(this) { newPassword ->
             var childrenCount = 1
             binding.pinList.children.forEach { child ->
-                if (child is AppCompatImageView){
+                if (child is AppCompatImageView) {
                     if (childrenCount <= newPassword.length) {
                         child.setImageResource(R.drawable.pin_circle_active)
+                    } else {
+                        child.setImageResource(R.drawable.pin_circle)
                     }
                 }
                 childrenCount++
             }
             if (newPassword.length == 6) {
                 viewModel.login()
+            }
+        }
+
+        viewModel.valid.observe(this) {
+            if (!it) {
+                binding.errorMessage.text = getString(R.string.pin_error_message)
+                binding.errorMessage.visibility = View.VISIBLE
+            } else {
+                binding.errorMessage.visibility = View.INVISIBLE
             }
         }
 

@@ -22,17 +22,27 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         get() = _password
 
     private val _user = MutableLiveData<User>()
-    val user : LiveData<User>
+    val user: LiveData<User>
         get() = _user
+
+    private val _valid = MutableLiveData<Boolean>()
+    val valid: LiveData<Boolean>
+        get() = _valid
 
 
     fun pinOnClick(number: Int) {
         _password.value += number.toString()
     }
 
+    fun deleteOnClick() {
+        _password.value = _password.value?.dropLast(1)
+    }
+
     fun login() {
         viewModelScope.launch {
             _user.value = _password.value?.let { repo.login(it) }
+            _valid.value = _user.value != null
+            _password.value = ""
         }
     }
 

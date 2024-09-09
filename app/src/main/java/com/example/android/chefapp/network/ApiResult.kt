@@ -1,18 +1,22 @@
 package com.example.android.chefapp.network
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
 
 sealed interface ApiResult<T>
-class ApiSuccess<T>(val data: T) : ApiResult<T>
+class ApiSuccess<T>(val body: T) : ApiResult<T>
 class ApiError<T>(val code: Int?, val message: String?) : ApiResult<T>
 class ApiLoading<T> : ApiResult<T>
 
-fun <T : Any> handleApi(
-    execute: () -> Response<T>
+suspend fun <T : Any> handleApi(
+    execute: suspend () -> Response<T>
 ) = try {
-    val response: Response<T> = execute()
-    val body  = response.body()
+    val response: Response<T> = withContext(Dispatchers.IO) {
+        execute()
+    }
+    val body = response.body()
     if (response.isSuccessful && body != null) {
         ApiSuccess(body)
     } else {
@@ -24,11 +28,12 @@ fun <T : Any> handleApi(
     ApiError(message = e.message, code = null)
 }
 
+
 suspend fun <T> ApiResult<T>.onSuccess(
     executable: suspend (T) -> Unit
 ) = apply {
     if (this is ApiSuccess<T>) {
-        executable(data)
+        executable(body)
     }
 }
 

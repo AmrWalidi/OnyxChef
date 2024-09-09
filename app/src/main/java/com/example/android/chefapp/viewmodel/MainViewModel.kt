@@ -32,11 +32,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun login() {
-        viewModelScope.launch {
-            user.value = repo.login("123456")
-        }
-    }
+
 
     fun logout() {
         viewModelScope.launch {
