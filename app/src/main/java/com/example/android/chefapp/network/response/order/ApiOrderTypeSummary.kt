@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 
 data class ApiOrderTypeSummary(
     @Json(name = "OrderTypeSummryList")
-    val orderTypes: List<NetworkOrderType>
+    val orderTypes: List<NetworkOrderType>?
 )
 
 data class NetworkOrderType(
@@ -16,20 +16,20 @@ data class NetworkOrderType(
 )
 
 fun ApiOrderTypeSummary.asDomainOrderType(): List<SummaryOrderType> {
-    return orderTypes.map {
+    return orderTypes?.map {
         SummaryOrderType(
             name = it.name,
             count = it.count.toInt()
         )
-    }
+    } ?: listOf()
 }
 
 fun ApiOrderTypeSummary.asDatabaseOrderTypeSummary(): Array<DatabaseSummaryOrderType> {
-    return orderTypes.map {
+    return orderTypes?.map {
         DatabaseSummaryOrderType(
             type = it.type.toInt(),
             name = it.name,
             count = it.count.toInt()
         )
-    }.toTypedArray()
+    }?.toTypedArray() ?: arrayOf()
 }

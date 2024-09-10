@@ -2,6 +2,7 @@ package com.example.android.chefapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -12,23 +13,18 @@ import com.example.android.chefapp.repository.UserRepository
 import kotlinx.coroutines.launch
 
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel(application: Application, u : User) : AndroidViewModel(application) {
 
     private val database = getDatabase(application)
     private val repo = UserRepository(database)
 
-    val user = MutableLiveData<User>()
-
-
-    init {
-        viewModelScope.launch {
-            user.value = repo.getCurrentUser()
-        }
-    }
+    private val _user = MutableLiveData(u)
+    val user : LiveData<User>
+        get() = _user
 
     fun refreshOrders() {
         viewModelScope.launch {
-            user.value?.let { repo.refreshOrders(it) }
+            _user.value?.let { repo.refreshOrders(it) }
         }
     }
 
@@ -36,17 +32,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun logout() {
         viewModelScope.launch {
-            user.value?.let { repo.logout(it) }
+            _user.value?.let { repo.logout(it) }
         }
     }
 
 
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(val app: Application, val user : User) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return MainViewModel(app) as T
+                return HomeViewModel(app, user) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

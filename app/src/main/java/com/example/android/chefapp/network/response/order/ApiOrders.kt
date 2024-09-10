@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 
 data class ApiOrders(
     @Json(name = "OrderMasterList")
-    val orders: List<NetworkOrder>
+    val orders: List<NetworkOrder>?
 )
 
 data class NetworkOrder(
@@ -34,7 +34,7 @@ data class NetworkOrderItem(
 )
 
 fun ApiOrders.asDatabaseOrders(): Array<DatabaseOrder> {
-    return orders.map {
+    return orders?.map {
         DatabaseOrder(
             orderId = it.no.toInt(),
             serial = it.serial,
@@ -44,12 +44,12 @@ fun ApiOrders.asDatabaseOrders(): Array<DatabaseOrder> {
             type = it.docTypeName,
             status = it.status,
         )
-    }.toTypedArray()
+    }?.toTypedArray() ?: arrayOf()
 }
 
 fun ApiOrders.asDatabaseItems(): Array<DatabaseOrderItem> {
     val items: MutableList<DatabaseOrderItem> = mutableListOf()
-    orders.forEach { order ->
+    orders?.forEach { order ->
         order.items.forEach { item ->
             val itemName: String = item.name
             var x = 1
@@ -73,7 +73,7 @@ fun ApiOrders.asDatabaseItems(): Array<DatabaseOrderItem> {
 
 fun ApiOrders.asDatabaseOrderItem(): Array<OrderItemCrossRef> {
     val orderItemList: MutableList<OrderItemCrossRef> = mutableListOf()
-    orders.map { order ->
+    orders?.map { order ->
         val orderId = order.no.toInt()
         order.items.map { item ->
             orderItemList.add(

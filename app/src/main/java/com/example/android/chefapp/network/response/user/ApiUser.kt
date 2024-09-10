@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 
 data class ApiUser(
     @Json(name = "UserData")
-    val user: NetworkUser
+    val user: NetworkUser?
 )
 
 data class NetworkUser(

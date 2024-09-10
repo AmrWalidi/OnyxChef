@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 
 data class ApiOrderStateSummary(
     @Json(name = "OrderStateSummryList")
-    val orderStates: List<NetworkOrderState>
+    val orderStates: List<NetworkOrderState>?
 )
 
 data class NetworkOrderState(
@@ -19,25 +19,29 @@ data class NetworkOrderState(
 )
 
 fun ApiOrderStateSummary.asDomainOrderState(): List<SummaryOrderState> {
-    var stateList: List<SummaryOrderState>
-    orderStates.first().let { states ->
-        stateList = listOf(
-            SummaryOrderState(states.allLabel, states.allCount.toInt()),
-            SummaryOrderState(states.canceledLabel, states.canceledCount.toInt()),
-            SummaryOrderState(states.delayedLabel, states.delayedCount.toInt())
-        )
+    var stateList: List<SummaryOrderState> = listOf()
+    orderStates?.first().let { states ->
+        if (states != null) {
+            stateList = listOf(
+                SummaryOrderState(states.allLabel, states.allCount.toInt()),
+                SummaryOrderState(states.canceledLabel, states.canceledCount.toInt()),
+                SummaryOrderState(states.delayedLabel, states.delayedCount.toInt())
+            )
+        }
     }
     return stateList
 }
 
 fun ApiOrderStateSummary.asDatabaseOrderStateSummary(): Array<DatabaseSummaryOrderState> {
-    var stateList: List<DatabaseSummaryOrderState>
-    orderStates.first().let { states ->
-        stateList = listOf(
-            DatabaseSummaryOrderState(states.allLabel, states.allCount.toInt()),
-            DatabaseSummaryOrderState(states.canceledLabel, states.canceledCount.toInt()),
-            DatabaseSummaryOrderState(states.delayedLabel, states.delayedCount.toInt())
-        )
+    var stateList: List<DatabaseSummaryOrderState> = listOf()
+    orderStates?.first().let { states ->
+        if (states != null) {
+            stateList = listOf(
+                DatabaseSummaryOrderState(states.allLabel, states.allCount.toInt()),
+                DatabaseSummaryOrderState(states.canceledLabel, states.canceledCount.toInt()),
+                DatabaseSummaryOrderState(states.delayedLabel, states.delayedCount.toInt())
+            )
+        }
     }
     return stateList.toTypedArray()
 }

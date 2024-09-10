@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 
 data class ApiOrderItemSummary(
     @Json(name = "OrderItemSummryList")
-    val items: List<NetworkSummaryItems>
+    val items: List<NetworkSummaryItems>?
 )
 
 data class NetworkSummaryItems(
@@ -16,21 +16,21 @@ data class NetworkSummaryItems(
 )
 
 fun ApiOrderItemSummary.asDomainSummaryItems(): List<SummaryItems> {
-    return items.map {
+    return items?.map {
         SummaryItems(
             code = it.code.toInt(),
             name = it.name,
             quantity = it.quantity.toInt()
         )
-    }
+    } ?: listOf()
 }
 
 fun ApiOrderItemSummary.asDatabaseSummaryItems(): List<DatabaseSummaryItem> {
-    return items.map {
+    return items?.map {
         DatabaseSummaryItem(
             code = it.code.toInt(),
             name = it.name,
             quantity = it.quantity.toInt()
         )
-    }
+    } ?: listOf()
 }

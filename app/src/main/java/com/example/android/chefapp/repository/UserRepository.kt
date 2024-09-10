@@ -1,7 +1,6 @@
 package com.example.android.chefapp.repository
 
 import com.example.android.chefapp.database.OnyxChefDatabase
-import com.example.android.chefapp.database.entity.asDomainUser
 import com.example.android.chefapp.domain.User
 import com.example.android.chefapp.network.OnyxRmsApi
 import com.example.android.chefapp.network.request.ApiRequest
@@ -15,10 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class UserRepository(private val database: OnyxChefDatabase) {
-
-    suspend fun getCurrentUser(): User? {
-        return database.daoUser.get().asDomainUser()
-    }
 
     suspend fun logout(user: User) {
         return database.daoUser.delete(user.unit)

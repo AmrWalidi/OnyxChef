@@ -29,6 +29,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val valid: LiveData<Boolean>
         get() = _valid
 
+    init{
+        viewModelScope.launch {
+            _user.value = repo.getCurrentUser()
+        }
+    }
+
 
     fun pinOnClick(number: Int) {
         _password.value += number.toString()

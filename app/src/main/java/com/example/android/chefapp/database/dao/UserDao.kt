@@ -9,7 +9,7 @@ interface UserDao {
     suspend fun insert(entity: DatabaseUser)
 
     @Query("select * from databaseuser")
-    suspend fun get(): List<DatabaseUser?>
+    suspend fun get(): DatabaseUser?
 
     @Query("DELETE FROM databaseuser WHERE unit = :id" )
     suspend fun delete(id: Int)

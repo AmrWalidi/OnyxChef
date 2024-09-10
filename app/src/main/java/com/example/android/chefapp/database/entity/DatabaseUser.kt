@@ -16,17 +16,16 @@ class DatabaseUser(
     val branch: Int
 )
 
-fun List<DatabaseUser?>.asDomainUser(): User? {
-    val user = this.firstOrNull() ?: return null
+fun DatabaseUser?.asDomainUser(): User? {
 
-    return user.let {
+    return this?.login?.split(' ')?.get(0)?.replace('/', '-')?.let {
         User(
-            username = "${it.name} - ${it.id}",
-            loginDate = it.login.split(' ')[0].replace('/', '-'),
-            unit = it.unit,
-            language = it.language,
-            terminal = it.terminal,
-            branch = it.branch
-        )
+        username = "$name - $id",
+        loginDate = it,
+        unit = unit,
+        language = language,
+        terminal = terminal,
+        branch = branch
+    )
     }
 }

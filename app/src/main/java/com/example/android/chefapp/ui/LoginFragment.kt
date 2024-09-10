@@ -1,35 +1,38 @@
 package com.example.android.chefapp.ui
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.chefapp.R
-import com.example.android.chefapp.databinding.ActivityLoginBinding
+import com.example.android.chefapp.databinding.FragmentLoginBinding
 import com.example.android.chefapp.viewmodel.LoginViewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by lazy {
-        val activity = requireNotNull(this)
+        val activity = requireNotNull(this.activity)
         ViewModelProvider(
             this,
             LoginViewModel.Factory(activity.application)
         )[LoginViewModel::class.java]
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        val binding: ActivityLoginBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_login)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding: FragmentLoginBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         binding.viewModel = viewModel
 
-        viewModel.password.observe(this) { newPassword ->
+        viewModel.password.observe(viewLifecycleOwner) { newPassword ->
             var childrenCount = 1
             binding.pinList.children.forEach { child ->
                 if (child is AppCompatImageView) {
@@ -46,15 +49,25 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.valid.observe(this) {
+        viewModel.valid.observe(viewLifecycleOwner) {
             if (!it) {
                 binding.errorMessage.text = getString(R.string.pin_error_message)
                 binding.errorMessage.visibility = View.VISIBLE
             } else {
-                binding.errorMessage.visibility = View.INVISIBLE
+                viewModel.user.value?.let { user ->
+                    findNavController().navigate(
+                        LoginFragmentDirections.actionLoginFragmentToHomeFragment(
+                            user
+                        )
+                    )
+                }
+
             }
         }
 
         binding.lifecycleOwner = this
+
+        return binding.root
     }
+
 }
