@@ -32,4 +32,8 @@ class LoginRepository(private val database: OnyxChefDatabase) {
         }
         return user
     }
+
+    suspend fun logout(user: User) {
+        return database.daoUser.delete(user.unit)
+    }
 }

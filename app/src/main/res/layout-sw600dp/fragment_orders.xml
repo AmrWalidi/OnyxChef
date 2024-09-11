@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.OrdersFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.chefapp.viewmodel.OrdersViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,15 +23,15 @@
             android:id="@+id/orders_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="33dp"
             android:fontFamily="@font/almarai"
-            android:text="Orders ( 0 )"
+            android:text="@{@string/total_orders_number(viewModel.ordersNumber)}"
             android:textColor="@color/primaryColor"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/orders_body"
+            app:layout_constraintBottom_toBottomOf="@+id/pagination"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pagination"
+            app:layout_constraintVertical_bias="0.5"
             tools:text="Orders ( 5 )" />
 
         <Button
@@ -46,30 +52,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/refresh_button"
             app:layout_constraintEnd_toStartOf="@+id/refresh_button"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/refresh_button">
 
             <TextView
                 android:id="@+id/no_prev_orders"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="(4)"
+                android:text="@{@string/order_number_placeholder(viewModel.ordersPrev)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="(4)" />
 
             <Button
-                android:id="@+id/prev_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/prev"
+                android:layout_width="30dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/primaryColor"
                 android:contentDescription="@string/previous_button"
-                android:textSize="20sp"
-                app:icon="@drawable/arrow_back" />
+                android:onClick="@{() -> viewModel.prevPage()}"
+                android:textSize="11sp"
+                app:icon="@drawable/arrow_back"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp" />
 
             <TextView
                 android:id="@+id/page_no"
@@ -78,21 +90,24 @@
                 android:layout_marginHorizontal="25dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/almarai"
-                android:text="TextView"
+                android:text="@{@string/page_count(viewModel.currentPage, viewModel.totalPage)}"
                 android:textColor="@color/primaryColor"
                 android:textSize="20sp"
                 tools:text="1/4" />
 
             <Button
-                android:id="@+id/next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/next"
+                android:layout_width="30dp"
+                android:layout_height="35dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/primaryColor"
                 android:contentDescription="@string/next_button"
-                android:textSize="20sp"
-                app:icon="@drawable/arrow_forward" />
+                android:onClick="@{() -> viewModel.nextPage()}"
+                android:textSize="11sp"
+                app:icon="@drawable/arrow_forward"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp" />
 
             <TextView
                 android:id="@+id/no_next_orders"
@@ -100,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/almarai"
-                android:text="TextView"
+                android:text="@{@string/order_number_placeholder(viewModel.ordersNext)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -130,12 +145,12 @@
             app:layout_constraintTop_toBottomOf="@+id/pagination"
             tools:visibility="gone">
 
-<!--            <com.airbnb.lottie.LottieAnimationView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:lottie_autoPlay="true"-->
-<!--                app:lottie_loop="true"-->
-<!--                app:lottie_rawRes="@raw/empty_animation" />-->
+            <!--            <com.airbnb.lottie.LottieAnimationView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:lottie_autoPlay="true"-->
+            <!--                app:lottie_loop="true"-->
+            <!--                app:lottie_rawRes="@raw/empty_animation" />-->
 
             <TextView
                 android:id="@+id/textView3"

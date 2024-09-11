@@ -42,7 +42,11 @@ fun ApiOrders.asDatabaseOrders(): Array<DatabaseOrder> {
             time = it.time,
             note = it.note,
             type = it.docTypeName,
-            status = it.status,
+            status = when (it.status) {
+                "1" -> "New"
+                "2" -> "Change"
+                else -> "delay"
+            }
         )
     }?.toTypedArray() ?: arrayOf()
 }
@@ -80,8 +84,12 @@ fun ApiOrders.asDatabaseOrderItem(): Array<OrderItemCrossRef> {
                 OrderItemCrossRef(
                     orderId = orderId,
                     itemId = item.name,
-                    quantity = item.quantity.toInt(),
-                    status = item.status
+                    quantity = item.quantity,
+                    status = when (item.status) {
+                        "1" -> "New"
+                        "2" -> "Change"
+                        else -> "delay"
+                    }
                 )
             )
         }

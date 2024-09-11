@@ -17,7 +17,10 @@ class HomeFragment : Fragment() {
         val activity = requireNotNull(this.activity)
         ViewModelProvider(
             this,
-            HomeViewModel.Factory(activity.application, HomeFragmentArgs.fromBundle(requireArguments()).user)
+            HomeViewModel.Factory(
+                activity.application,
+                HomeFragmentArgs.fromBundle(requireArguments()).user
+            )
         )[HomeViewModel::class.java]
     }
 
@@ -25,11 +28,32 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val binding: FragmentHomeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        binding.viewmodel = viewModel
+        binding.viewModel = viewModel
 
+        viewModel.fragmentNumber.observe(viewLifecycleOwner) { num ->
+            val bundle = Bundle().apply {
+                viewModel.user.value?.let{
+                    putInt("terminal", it.terminal)
+                    putInt("branch", it.branch)
+                }
+            }
+
+            val fragment = when (num) {
+                1 -> OrdersFragment().apply { arguments = bundle }
+                2 -> HistoryFragment().apply { arguments = bundle }
+                3 -> SummaryFragment().apply { arguments = bundle }
+                else -> return@observe
+            }
+
+            childFragmentManager.beginTransaction().apply {
+                replace(binding.mainFragment.id, fragment)
+                commit()
+            }
+        }
         return binding.root
     }
 }

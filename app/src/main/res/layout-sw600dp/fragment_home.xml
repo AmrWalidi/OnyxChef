@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.example.android.chefapp.viewmodel.HomeViewModel" />
     </data>
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28.5dp"
                 android:fontFamily="@font/almarai"
-                android:text="@{viewmodel.user.username}"
+                android:text="@{viewModel.user.username}"
                 android:textColor="#075060"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/almarai"
-                android:text="@{viewmodel.user.loginDate}"
+                android:text="@{viewModel.user.loginDate}"
                 app:layout_constraintBottom_toBottomOf="@+id/mainChef"
                 app:layout_constraintStart_toStartOf="@+id/username"
                 app:layout_constraintTop_toBottomOf="@+id/username"
@@ -254,8 +254,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/orders_button"
                     android:layout_width="72dp"
-                    android:layout_height="66dp">
+                    android:layout_height="66dp"
+                    android:onClick="@{() -> viewModel.navigateThroughFragments(1)}">
 
                     <ImageView
                         android:id="@+id/orderIcon"
@@ -280,9 +282,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/history_button"
                     android:layout_width="72dp"
                     android:layout_height="66dp"
-                    android:layout_marginVertical="20dp">
+                    android:layout_marginVertical="20dp"
+                    android:onClick="@{() -> viewModel.navigateThroughFragments(2)}">
 
                     <ImageView
                         android:id="@+id/histroyIcon"
@@ -307,8 +311,10 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/summary_button"
                     android:layout_width="72dp"
-                    android:layout_height="66dp">
+                    android:layout_height="66dp"
+                    android:onClick="@{() -> viewModel.navigateThroughFragments(3)}">
 
                     <ImageView
                         android:id="@+id/imageView10"

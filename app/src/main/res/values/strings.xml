@@ -56,4 +56,7 @@
     <string name="zero">0</string>
     <string name="chef_logo">chef logo</string>
     <string name="onxpos_logo">onxpos logo</string>
+    <string name="total_orders_number">Orders ( %1$d )</string>
+    <string name="order_number_placeholder">(%1$d)</string>
+    <string name="page_count">%1$d/%2$d</string>
 </resources>

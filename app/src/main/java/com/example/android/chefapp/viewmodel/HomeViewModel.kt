@@ -9,25 +9,27 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.android.chefapp.database.getDatabase
 import com.example.android.chefapp.domain.User
-import com.example.android.chefapp.repository.UserRepository
+import com.example.android.chefapp.repository.LoginRepository
 import kotlinx.coroutines.launch
 
 
-class HomeViewModel(application: Application, u : User) : AndroidViewModel(application) {
+class HomeViewModel(application: Application, u: User) : AndroidViewModel(application) {
 
     private val database = getDatabase(application)
-    private val repo = UserRepository(database)
+    private val repo = LoginRepository(database)
 
     private val _user = MutableLiveData(u)
-    val user : LiveData<User>
+    val user: LiveData<User>
         get() = _user
 
-    fun refreshOrders() {
-        viewModelScope.launch {
-            _user.value?.let { repo.refreshOrders(it) }
-        }
-    }
+    private val _fragmentNumber = MutableLiveData(1)
+    val fragmentNumber: LiveData<Int>
+        get() = _fragmentNumber
 
+
+    fun navigateThroughFragments(fragment: Int) {
+        _fragmentNumber.value = fragment
+    }
 
 
     fun logout() {
@@ -37,8 +39,7 @@ class HomeViewModel(application: Application, u : User) : AndroidViewModel(appli
     }
 
 
-
-    class Factory(val app: Application, val user : User) : ViewModelProvider.Factory {
+    class Factory(val app: Application, val user: User) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")

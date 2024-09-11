@@ -22,7 +22,7 @@ import com.example.android.chefapp.database.entity.OrderItemCrossRef
         DatabaseSummaryOrderState::class,
         DatabaseSummaryItem::class
     ],
-    version = 5
+    version = 6
 )
 abstract class OnyxChefDatabase : RoomDatabase() {
     abstract val daoUser: UserDao
