@@ -7,6 +7,7 @@ data class Order(
     val time: String,
     val note: String,
     val type: String,
+    val passedTime : String,
     val status: String,
     val items: List<OrderItem>
 )

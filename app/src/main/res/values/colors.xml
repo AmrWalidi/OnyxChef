@@ -3,7 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primaryColor">#075060</color>
-    <color name="new_state_color">#28D145</color>
+    <color name="new_color">#28D145</color>
+    <color name="new_background_color">#D4FFCC</color>
     <color name="background">#F8F8F8</color>
     <color name="default_text">#898989</color>
     <color name="canceled_color">#6A6A6A</color>
@@ -11,4 +12,6 @@
     <color name="delayed_color">#F4637C</color>
     <color name="take_away_color">#43798B</color>
     <color name="delivery_color">#74B771</color>
+    <color name="changed_color">#E8FBFF</color>
+    <color name="delayed_background_color">#FFD6DD</color>
 </resources>

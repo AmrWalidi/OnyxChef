@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:background="#F8F8F8"
+    android:background="@drawable/item_container_background"
+    android:backgroundTint="#F8F8F8"
     android:paddingStart="0dp"
     android:paddingEnd="11dp">
 
@@ -13,7 +14,7 @@
         android:id="@+id/divider7"
         android:layout_width="4dp"
         android:layout_height="23dp"
-        android:background="@color/new_state_color"
+        android:background="@color/new_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +35,6 @@
         android:id="@+id/checkCircle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

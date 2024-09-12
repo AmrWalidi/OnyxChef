@@ -32,6 +32,7 @@ class OrdersRepository(val database: OnyxChefDatabase) {
                 note = order.note,
                 type = order.type,
                 status = order.status,
+                passedTime = order.passedTime,
                 items = orderItemsCrossRef.filter {
                     it.orderId == order.orderId
                 }.map { ref ->
@@ -46,7 +47,7 @@ class OrdersRepository(val database: OnyxChefDatabase) {
     }
 
 
-    suspend fun refreshOrders(branch: Int?, terminal: Int?) {
+    suspend fun refreshOrders(branch: Int?, terminal: Int?): Int {
         val response: ApiResponse<ApiOrders>
         withContext(Dispatchers.IO) {
             response = OnyxRmsApi.orderRetrofitService
@@ -65,15 +66,14 @@ class OrdersRepository(val database: OnyxChefDatabase) {
             database.daoOrder.insertItems(*databaseItem)
             database.daoOrder.insertAllOrderItemCrossRef(*databaseOrderItem)
         }
+        return response.data.orders?.size ?: 0
     }
 
     suspend fun getOrders(currentPage: Int): List<Order> {
-        var orders: List<Order>
-        withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
             val databaseOrders = database.daoOrder.getOrders(currentPage * 4)
-            orders = ordersAsDomain(databaseOrders)
+            ordersAsDomain(databaseOrders)
         }
-        return orders
     }
 
     suspend fun getOrdersNumber(): Int {

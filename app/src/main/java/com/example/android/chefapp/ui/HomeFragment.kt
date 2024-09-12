@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.chefapp.R
@@ -34,9 +35,40 @@ class HomeFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+
+        viewModel.fragmentNumber.observe(viewLifecycleOwner) { btn ->
+
+            when (btn) {
+                1 -> {
+                    binding.ordersButton.background =
+                        this.context?.let { ContextCompat.getDrawable(it, R.drawable.nav_clicked) }
+                    binding.summaryButton.background = null
+                    binding.historyButton.background = null
+                }
+
+                2 -> {
+                    binding.historyButton.background =
+                        this.context?.let { ContextCompat.getDrawable(it, R.drawable.nav_clicked) }
+                    binding.summaryButton.background = null
+                    binding.ordersButton.background = null
+                }
+
+                3 -> {
+                    binding.summaryButton.background =
+                        this.context?.let { ContextCompat.getDrawable(it, R.drawable.nav_clicked) }
+                    binding.historyButton.background = null
+                    binding.ordersButton.background = null
+                }
+
+                else -> return@observe
+            }
+
+        }
+
         viewModel.fragmentNumber.observe(viewLifecycleOwner) { num ->
+
             val bundle = Bundle().apply {
-                viewModel.user.value?.let{
+                viewModel.user.value?.let {
                     putInt("terminal", it.terminal)
                     putInt("branch", it.branch)
                 }

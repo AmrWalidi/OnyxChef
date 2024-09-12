@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.chefapp.R
+import com.example.android.chefapp.adapters.OrderAdapter
 import com.example.android.chefapp.databinding.FragmentOrdersBinding
 import com.example.android.chefapp.viewmodel.OrdersViewModel
 
@@ -28,7 +29,6 @@ class OrdersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val viewModel: OrdersViewModel by lazy {
             val activity = requireNotNull(this.activity)
             ViewModelProvider(
@@ -41,9 +41,24 @@ class OrdersFragment : Fragment() {
             inflater,
             R.layout.fragment_orders, container, false
         )
+
         binding.viewModel = viewModel
 
-        viewModel.currentPage.observe(viewLifecycleOwner){
+        val adapter = OrderAdapter()
+        binding.ordersBody.adapter = adapter
+
+        viewModel.orders.observe(viewLifecycleOwner) {
+            it?.let {
+                adapter.submitList(it)
+                if (it.isEmpty()) {
+                    binding.noItemContainer.visibility = View.VISIBLE
+                } else {
+                    binding.noItemContainer.visibility = View.GONE
+                }
+            }
+        }
+
+        viewModel.currentPage.observe(viewLifecycleOwner) {
             viewModel.getOrders()
         }
 

@@ -12,7 +12,8 @@ import com.example.android.chefapp.domain.Order
 import com.example.android.chefapp.repository.OrdersRepository
 import kotlinx.coroutines.launch
 
-class OrdersViewModel(app: Application, branch: Int?, terminal: Int?) : AndroidViewModel(app) {
+class OrdersViewModel(app: Application, private val branch: Int?, private val terminal: Int?) :
+    AndroidViewModel(app) {
 
     val database = getDatabase(app)
     private val repo = OrdersRepository(database)
@@ -33,7 +34,7 @@ class OrdersViewModel(app: Application, branch: Int?, terminal: Int?) : AndroidV
     val ordersPrev: LiveData<Int>
         get() = _ordersPrev
 
-    private val _totalPage = MutableLiveData(0)
+    private val _totalPage = MutableLiveData(1)
     val totalPage: LiveData<Int>
         get() = _totalPage
 
@@ -42,36 +43,71 @@ class OrdersViewModel(app: Application, branch: Int?, terminal: Int?) : AndroidV
         get() = _currentPage
 
     init {
-        viewModelScope.launch {
-            repo.refreshOrders(branch, terminal)
-            getSavedOrders()
-            _ordersNumber.value = repo.getOrdersNumber()
-            if (_ordersNumber.value!!.mod(4) == 0) {
-                _totalPage.value = _ordersNumber.value!!.div(4)
-            } else {
-                _totalPage.value = _ordersNumber.value!!.div(4) + 1
-            }
-            _ordersNext.value = _ordersNumber.value!! - 4
-        }
+        getOrders()
     }
 
-    fun getOrders(){
+
+    fun getOrders() {
         viewModelScope.launch {
             getSavedOrders()
         }
     }
 
     private suspend fun getSavedOrders() {
-        _orders.value = _currentPage.value?.let { repo.getOrders(it -1 ) }
+        _orders.value = _currentPage.value?.let { repo.getOrders(it - 1) }
+        if (_orders.value?.isEmpty() == true) {
+            refresh()
+        } else {
+            getOrdersNumbers()
+        }
+    }
+
+    private suspend fun getOrdersNumbers() {
+        _ordersNumber.value = repo.getOrdersNumber()
+        if (_ordersNumber.value == 0) {
+            _ordersNext.value = 0
+            _totalPage.value = 1
+        } else {
+            if (_ordersNumber.value!!.mod(4) == 0) {
+                _totalPage.value = _ordersNumber.value!!.div(4)
+                _ordersNext.value = _ordersNumber.value!! - 4
+            } else {
+                _totalPage.value = _ordersNumber.value!!.div(4) + 1
+            }
+            _ordersNext.value = _ordersNumber.value!! - 4
+        }
+        _currentPage.value = 1
+        _ordersPrev.value = 0
+    }
+
+    fun refresh() {
+        viewModelScope.launch {
+            if (refreshOrders() != 0) {
+                getSavedOrders()
+            } else {
+                reset()
+            }
+        }
+    }
+
+    private suspend fun refreshOrders(): Int {
+        return repo.refreshOrders(branch, terminal)
+    }
+
+    private fun reset() {
+        _orders.value = listOf()
+        _ordersNext.value = 0
+        _ordersPrev.value = 0
+        _totalPage.value = 1
+        _currentPage.value = 1
     }
 
     fun nextPage() {
-        if (_ordersNext.value != 0){
-            if(_ordersNext.value!! <= 4){
+        if (_ordersNext.value != 0) {
+            if (_ordersNext.value!! <= 4) {
                 _ordersNext.value = 0
                 _currentPage.value = _totalPage.value
-            }
-            else {
+            } else {
                 _ordersNext.value = _ordersNext.value?.minus(4)
             }
             _ordersPrev.value = _ordersPrev.value?.plus(4)
@@ -79,8 +115,8 @@ class OrdersViewModel(app: Application, branch: Int?, terminal: Int?) : AndroidV
     }
 
     fun prevPage() {
-        if(_ordersPrev.value!! >= 4){
-            _ordersPrev.value = _ordersPrev.value?.minus( 4)
+        if (_ordersPrev.value!! >= 4) {
+            _ordersPrev.value = _ordersPrev.value?.minus(4)
             _currentPage.value = _currentPage.value?.minus(1)
             _ordersNext.value = _orders.value?.let { _ordersNext.value?.plus(it.size) }
         }

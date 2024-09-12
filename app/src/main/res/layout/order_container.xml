@@ -1,170 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="205dp"
-    android:layout_height="match_parent"
-    android:layout_marginEnd="20dp"
-    android:background="@drawable/rounded_edges">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="order"
+            type="com.example.android.chefapp.domain.Order" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/top_round_edges"
-        android:backgroundTint="#D4FFCC"
-        android:paddingHorizontal="10dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="205dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_edges">
 
-
-        <LinearLayout
-            android:id="@+id/stateContainer"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:orientation="horizontal"
+            android:background="@drawable/top_round_edges"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:setStatus="@{order.status}">
 
-            <ImageView
-                android:id="@+id/stateIcon"
+
+            <LinearLayout
+                android:id="@+id/stateContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_new" />
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/stateIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:setStatus="@{order.status}" />
+
+                <TextView
+                    android:id="@+id/orderStateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@{order.status}"
+                    android:textSize="12sp"
+                    app:setStatus="@{order.status}" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/orderStateText"
+                android:id="@+id/orderTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
                 android:layout_weight="1"
-                android:textColor="@color/new_state_color"
+                android:fontFamily="@font/almarai"
+                android:text="@{order.time}"
+                android:textColor="@color/black"
                 android:textSize="12sp"
-                tools:text="New" />
-        </LinearLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/orderTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/almarai"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            <TextView
+                android:id="@+id/orderNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/almarai"
+                android:text="@{@string/order_no(order.no)}"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/stateContainer"
+                app:layout_constraintTop_toBottomOf="@id/stateContainer"
+                app:setStatus="@{order.status}" />
+
+            <TextView
+                android:id="@+id/orderTypeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/almarai"
+                android:text="@string/order_type"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/orderType"
+                app:layout_constraintStart_toStartOf="@id/orderType"
+                app:layout_constraintTop_toBottomOf="@+id/orderNumber" />
+
+            <TextView
+                android:id="@+id/orderType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/almarai"
+                android:text="@{order.type}"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/timeTakenHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/almarai"
+                android:text="@string/time_taken"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/timeTaken"
+                app:layout_constraintStart_toStartOf="@+id/timeTaken" />
+
+            <TextView
+                android:id="@+id/timeTaken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/almarai"
+                android:text="@{order.passedTime}"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/divider6" />
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="1dp"
+                android:layout_height="23dp"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="#AAAAAA"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/orderType"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/order_item_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/orderActionButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="10:48 AM" />
-
-        <TextView
-            android:id="@+id/orderNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/almarai"
-            android:textColor="@color/new_state_color"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/stateContainer"
-            app:layout_constraintTop_toBottomOf="@id/stateContainer"
-            tools:text="# Order No 645263" />
-
-        <TextView
-            android:id="@+id/orderTypeHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/almarai"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/orderType"
-            app:layout_constraintStart_toStartOf="@id/orderType"
-            app:layout_constraintTop_toBottomOf="@+id/orderNumber"
-            tools:text="Order type" />
-
-        <TextView
-            android:id="@+id/orderType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/almarai"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Dine in" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="7"
+            tools:listitem="@layout/order_item" />
 
-        <TextView
-            android:id="@+id/timeTakenHeader"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/orderActionButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="18dp"
+            android:backgroundTint="@color/primaryColor"
             android:fontFamily="@font/almarai"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/timeTaken"
-            app:layout_constraintStart_toStartOf="@+id/timeTaken"
-            tools:text="Time taken" />
-
-        <TextView
-            android:id="@+id/timeTaken"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/almarai"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/divider6"
-            tools:text="00 : 00" />
-
-        <View
-            android:id="@+id/divider6"
-            android:layout_width="1dp"
-            android:layout_height="23dp"
-            android:background="?android:attr/listDivider"
-            android:backgroundTint="#AAAAAA"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:icon="@drawable/ic_pump"
+            app:iconGravity="textStart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/orderType"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="PUMP" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/order_item_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/orderActionButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:itemCount="7"
-        tools:listitem="@layout/order_item" />
-
-    <Button
-        android:id="@+id/orderActionButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="18dp"
-        android:backgroundTint="@color/primaryColor"
-        android:fontFamily="@font/almarai"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:icon="@drawable/ic_pump"
-        app:iconGravity="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="PUMP" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

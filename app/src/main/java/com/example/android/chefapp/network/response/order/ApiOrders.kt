@@ -18,6 +18,7 @@ data class NetworkOrder(
     @Json(name = "ORDR_NOTE") val note: String,
     @Json(name = "BILL_DOC_TYPE") val docType: String,
     @Json(name = "BILL_DOC_TYPE_NM") val docTypeName: String,
+    @Json(name = "PSSD_TM") val passedTime : String,
     @Json(name = "PRCSSD_FLG") val processedFlag: String,
     @Json(name = "PRCSSD_U_ID") val processedUserId: String,
     @Json(name = "PRCSSD_DATE") val processedDate: String,
@@ -42,6 +43,7 @@ fun ApiOrders.asDatabaseOrders(): Array<DatabaseOrder> {
             time = it.time,
             note = it.note,
             type = it.docTypeName,
+            passedTime = it.passedTime,
             status = when (it.status) {
                 "1" -> "New"
                 "2" -> "Change"

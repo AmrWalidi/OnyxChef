@@ -11,6 +11,7 @@ data class DatabaseOrder(
     val date: String,
     val time: String,
     val note: String,
+    val passedTime : String,
     val type: String,
     val status: String,
 )
