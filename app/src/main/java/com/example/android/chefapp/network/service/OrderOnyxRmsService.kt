@@ -8,6 +8,7 @@ import com.example.android.chefapp.network.response.order.ApiOrderItemSummary
 import com.example.android.chefapp.network.response.order.ApiOrderStateSummary
 import com.example.android.chefapp.network.response.order.ApiOrderTypeSummary
 import com.example.android.chefapp.network.response.order.ApiOrders
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -15,23 +16,23 @@ import retrofit2.http.POST
 interface OrderOnyxRmsService {
 
     @POST("Order/GetOrders")
-    suspend fun getOrders(@Body post: ApiRequest<OrderRequestBody>): ApiResponse<ApiOrders>
+    suspend fun getOrders(@Body post: ApiRequest<OrderRequestBody>): Response<ApiResponse<ApiOrders>>
 
-    @POST("Order/GetOrderTypeSummary")
-    suspend fun getOrderTypeSummary(@Body post: ApiRequest<OrderRequestBody>): ApiResponse<ApiOrderTypeSummary>
+    @POST("Order/GetOrderTypeSummry")
+    suspend fun getOrderTypeSummary(@Body post: ApiRequest<OrderRequestBody>): Response<ApiResponse<ApiOrderTypeSummary>>
 
-    @POST("Order/GetOrderTypeSummary")
-    suspend fun getOrderStateSummary(@Body post: ApiRequest<OrderRequestBody>): ApiResponse<ApiOrderStateSummary>
+    @POST("Order/GetOrderStateSummry")
+    suspend fun getOrderStateSummary(@Body post: ApiRequest<OrderRequestBody>): Response<ApiResponse<ApiOrderStateSummary>>
 
-    @POST("Order/GetOrderItemSummary")
-    suspend fun getOrderItemSummary(@Body post: ApiRequest<OrderRequestBody>): ApiResponse<ApiOrderItemSummary>
+    @POST("Order/GetOrderItemSummay")
+    suspend fun getOrderItemSummary(@Body post: ApiRequest<OrderRequestBody>): Response<ApiResponse<ApiOrderItemSummary>>
 
     @POST("Order/SetItemProcessed")
-    suspend fun setItemProcessed(@Body post: ApiRequest<ProcessedRequestBody>): ApiResponse<Any>
+    suspend fun setItemProcessed(@Body post: ApiRequest<ProcessedRequestBody>): Response<ApiResponse<Any>>
 
     @POST("Order/SetOrderProcessed")
-    suspend fun setOrderProcessed(@Body post: ApiRequest<ProcessedRequestBody>): ApiResponse<Any>
+    suspend fun setOrderProcessed(@Body post: ApiRequest<ProcessedRequestBody>): Response<ApiResponse<Any>>
 
     @POST("Order/RecallProcessedOrder")
-    suspend fun recallProcessedOrder(@Body post: ApiRequest<ProcessedRequestBody>): ApiResponse<Any>
+    suspend fun recallProcessedOrder(@Body post: ApiRequest<ProcessedRequestBody>): Response<ApiResponse<Any>>
 }

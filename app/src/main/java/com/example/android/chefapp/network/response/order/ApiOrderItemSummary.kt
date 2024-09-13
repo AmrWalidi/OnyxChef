@@ -1,6 +1,5 @@
 package com.example.android.chefapp.network.response.order
 
-import com.example.android.chefapp.database.entity.DatabaseSummaryItem
 import com.example.android.chefapp.domain.SummaryItems
 import com.squareup.moshi.Json
 
@@ -18,16 +17,6 @@ data class NetworkSummaryItems(
 fun ApiOrderItemSummary.asDomainSummaryItems(): List<SummaryItems> {
     return items?.map {
         SummaryItems(
-            code = it.code.toInt(),
-            name = it.name,
-            quantity = it.quantity.toInt()
-        )
-    } ?: listOf()
-}
-
-fun ApiOrderItemSummary.asDatabaseSummaryItems(): List<DatabaseSummaryItem> {
-    return items?.map {
-        DatabaseSummaryItem(
             code = it.code.toInt(),
             name = it.name,
             quantity = it.quantity.toInt()

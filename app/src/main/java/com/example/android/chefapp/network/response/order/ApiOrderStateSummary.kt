@@ -1,6 +1,5 @@
 package com.example.android.chefapp.network.response.order
 
-import com.example.android.chefapp.database.entity.DatabaseSummaryOrderState
 import com.example.android.chefapp.domain.SummaryOrderState
 import com.squareup.moshi.Json
 
@@ -19,29 +18,37 @@ data class NetworkOrderState(
 )
 
 fun ApiOrderStateSummary.asDomainOrderState(): List<SummaryOrderState> {
-    var stateList: List<SummaryOrderState> = listOf()
+    val stateList: MutableList<SummaryOrderState> = mutableListOf()
     orderStates?.first().let { states ->
         if (states != null) {
-            stateList = listOf(
-                SummaryOrderState(states.allLabel, states.allCount.toInt()),
-                SummaryOrderState(states.canceledLabel, states.canceledCount.toInt()),
-                SummaryOrderState(states.delayedLabel, states.delayedCount.toInt())
-            )
+
+            if (states.allCount != "") {
+                stateList.add(SummaryOrderState(states.allLabel, states.allCount.toInt()))
+            } else {
+                stateList.add(SummaryOrderState(states.allLabel, 0))
+            }
+            if (states.canceledCount != "") {
+                stateList.add(
+                    SummaryOrderState(
+                        states.canceledLabel,
+                        states.canceledCount.toInt()
+                    ),
+                )
+            } else {
+                stateList.add(SummaryOrderState(states.canceledLabel, 0))
+            }
+
+            if (states.delayedCount != "") {
+                stateList.add(
+                    SummaryOrderState(
+                        states.delayedLabel,
+                        states.delayedCount.toInt()
+                    )
+                )
+            } else {
+                stateList.add(SummaryOrderState(states.delayedLabel, 0))
+            }
         }
     }
     return stateList
-}
-
-fun ApiOrderStateSummary.asDatabaseOrderStateSummary(): Array<DatabaseSummaryOrderState> {
-    var stateList: List<DatabaseSummaryOrderState> = listOf()
-    orderStates?.first().let { states ->
-        if (states != null) {
-            stateList = listOf(
-                DatabaseSummaryOrderState(states.allLabel, states.allCount.toInt()),
-                DatabaseSummaryOrderState(states.canceledLabel, states.canceledCount.toInt()),
-                DatabaseSummaryOrderState(states.delayedLabel, states.delayedCount.toInt())
-            )
-        }
-    }
-    return stateList.toTypedArray()
 }

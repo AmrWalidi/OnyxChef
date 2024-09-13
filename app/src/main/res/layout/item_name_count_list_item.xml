@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    android:background="@drawable/rounded_edges"
-    android:backgroundTint="@color/background"
-    android:paddingVertical="13dp"
-    android:paddingStart="16dp"
-    android:paddingEnd="20dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="summaryItem"
+            type="com.example.android.chefapp.domain.SummaryItems" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item"
+        android:layout_width="396dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/almarai"
-        android:textColor="@color/primaryColor"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Green Salad" />
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="@color/background"
+        android:paddingVertical="13dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="20dp">
 
-    <TextView
-        android:id="@+id/items_count_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/almarai"
-        android:textColor="@color/primaryColor"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
-        tools:text="54" />
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/almarai"
+            android:text="@{summaryItem.name}"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Green Salad" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/items_count_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/almarai"
+            android:text="@{summaryItem.quantity}"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView25"
+            tools:text="54" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

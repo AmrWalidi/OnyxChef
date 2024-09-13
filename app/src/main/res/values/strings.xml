@@ -62,4 +62,5 @@
     <string name="time_taken">Time taken</string>
     <string name="order_no"># Order No %1$s</string>
     <string name="status_icon">status icon</string>
+    <string name="item_detail">%1$s x %2$s</string>
 </resources>

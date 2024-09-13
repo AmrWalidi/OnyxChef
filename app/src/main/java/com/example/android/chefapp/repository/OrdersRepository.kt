@@ -4,11 +4,11 @@ import com.example.android.chefapp.database.OnyxChefDatabase
 import com.example.android.chefapp.database.entity.DatabaseOrder
 import com.example.android.chefapp.domain.Order
 import com.example.android.chefapp.domain.OrderItem
+import com.example.android.chefapp.network.ApiSuccess
 import com.example.android.chefapp.network.OnyxRmsApi
+import com.example.android.chefapp.network.handleApi
 import com.example.android.chefapp.network.request.ApiRequest
 import com.example.android.chefapp.network.request.OrderRequestBody
-import com.example.android.chefapp.network.response.ApiResponse
-import com.example.android.chefapp.network.response.order.ApiOrders
 import com.example.android.chefapp.network.response.order.asDatabaseItems
 import com.example.android.chefapp.network.response.order.asDatabaseOrderItem
 import com.example.android.chefapp.network.response.order.asDatabaseOrders
@@ -48,9 +48,8 @@ class OrdersRepository(val database: OnyxChefDatabase) {
 
 
     suspend fun refreshOrders(branch: Int?, terminal: Int?): Int {
-        val response: ApiResponse<ApiOrders>
-        withContext(Dispatchers.IO) {
-            response = OnyxRmsApi.orderRetrofitService
+        val response = handleApi {
+            OnyxRmsApi.orderRetrofitService
                 .getOrders(
                     ApiRequest(
                         OrderRequestBody(
@@ -59,26 +58,31 @@ class OrdersRepository(val database: OnyxChefDatabase) {
                         )
                     )
                 )
-            val databaseOrders = response.data.asDatabaseOrders()
-            val databaseItem = response.data.asDatabaseItems()
-            val databaseOrderItem = response.data.asDatabaseOrderItem()
-            database.daoOrder.insertOrders(*databaseOrders)
-            database.daoOrder.insertItems(*databaseItem)
-            database.daoOrder.insertAllOrderItemCrossRef(*databaseOrderItem)
         }
-        return response.data.orders?.size ?: 0
+        return when (response) {
+            is ApiSuccess -> {
+                val databaseOrders = response.body.data.asDatabaseOrders()
+                val databaseItem = response.body.data.asDatabaseItems()
+                val databaseOrderItem = response.body.data.asDatabaseOrderItem()
+                database.daoOrder.insertOrders(*databaseOrders)
+                database.daoOrder.insertItems(*databaseItem)
+                database.daoOrder.insertAllOrderItemCrossRef(*databaseOrderItem)
+                response.body.data.orders?.size ?: 0
+            }
+
+            else -> {
+                0
+            }
+        }
     }
 
     suspend fun getOrders(currentPage: Int): List<Order> {
-        return withContext(Dispatchers.IO) {
-            val databaseOrders = database.daoOrder.getOrders(currentPage * 4)
-            ordersAsDomain(databaseOrders)
-        }
+        return ordersAsDomain(database.daoOrder.getOrders(currentPage * 4))
+
     }
 
     suspend fun getOrdersNumber(): Int {
-        return withContext(Dispatchers.IO) {
-            database.daoOrder.getOrdersNumber()
-        }
+        return database.daoOrder.getOrdersNumber()
+
     }
 }

@@ -42,10 +42,6 @@ class OrdersViewModel(app: Application, private val branch: Int?, private val te
     val currentPage: LiveData<Int>
         get() = _currentPage
 
-    init {
-        getOrders()
-    }
-
 
     fun getOrders() {
         viewModelScope.launch {

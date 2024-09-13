@@ -59,7 +59,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_red_light"
                 android:textStyle="bold"
-                android:visibility="invisible"
+                android:visibility="gone"
                 tools:text="WRONG PIN" />
 
             <LinearLayout
@@ -126,8 +126,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/one"
                     android:onClick="@{() -> viewModel.pinOnClick(1)}"
+                    android:text="@string/one"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -139,8 +139,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/two"
                     android:onClick="@{() -> viewModel.pinOnClick(2)}"
+                    android:text="@string/two"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -152,8 +152,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/three"
                     android:onClick="@{() -> viewModel.pinOnClick(3)}"
+                    android:text="@string/three"
                     android:textColor="@color/white"
                     android:textColorHighlight="#DDF9FF"
                     android:textSize="28sp"
@@ -179,8 +179,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/five"
                     android:onClick="@{() -> viewModel.pinOnClick(5)}"
+                    android:text="@string/five"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -192,8 +192,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/six"
                     android:onClick="@{() -> viewModel.pinOnClick(6)}"
+                    android:text="@string/six"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -205,8 +205,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/seven"
                     android:onClick="@{() -> viewModel.pinOnClick(7)}"
+                    android:text="@string/seven"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -218,8 +218,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/eight"
                     android:onClick="@{() -> viewModel.pinOnClick(8)}"
+                    android:text="@string/eight"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -231,8 +231,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/nine"
                     android:onClick="@{() -> viewModel.pinOnClick(9)}"
+                    android:text="@string/nine"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -257,8 +257,8 @@
                     android:layout_margin="14dp"
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
-                    android:text="@string/zero"
                     android:onClick="@{() -> viewModel.pinOnClick(0)}"
+                    android:text="@string/zero"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -271,9 +271,9 @@
                     android:background="@drawable/pin_circle"
                     android:backgroundTint="#DDF9FF"
                     android:backgroundTintMode="src_in"
+                    android:onClick="@{() -> viewModel.deleteOnClick()}"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:onClick="@{() -> viewModel.deleteOnClick()}"
                     app:cornerRadius="50dp"
                     app:icon="@drawable/ic_delete"
                     app:iconPadding="0dp"
@@ -296,6 +296,7 @@
                 app:strokeWidth="1dp" />
 
             <LinearLayout
+                style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
@@ -312,7 +313,8 @@
                     android:text="@string/settings"
                     android:textColor="#075060"
                     android:textSize="16sp"
-                    app:icon="@drawable/ic_settings" />
+                    app:icon="@drawable/ic_settings"
+                    app:iconTint="@color/primaryColor" />
 
                 <Button
                     android:id="@+id/button7"
@@ -325,7 +327,8 @@
                     android:text="@string/language"
                     android:textColor="#075060"
                     android:textSize="16sp"
-                    app:icon="@drawable/world" />
+                    app:icon="@drawable/world"
+                    app:iconTint="@color/primaryColor" />
             </LinearLayout>
 
 

@@ -58,9 +58,9 @@ class OrdersFragment : Fragment() {
             }
         }
 
-        viewModel.currentPage.observe(viewLifecycleOwner) {
-            viewModel.getOrders()
-        }
+//        viewModel.currentPage.observe(viewLifecycleOwner) {
+//            viewModel.getOrders()
+//        }
 
         binding.lifecycleOwner = this
 

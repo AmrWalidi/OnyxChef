@@ -1,6 +1,5 @@
 package com.example.android.chefapp.network.response.order
 
-import com.example.android.chefapp.database.entity.DatabaseSummaryOrderType
 import com.example.android.chefapp.domain.SummaryOrderType
 import com.squareup.moshi.Json
 
@@ -22,14 +21,4 @@ fun ApiOrderTypeSummary.asDomainOrderType(): List<SummaryOrderType> {
             count = it.count.toInt()
         )
     } ?: listOf()
-}
-
-fun ApiOrderTypeSummary.asDatabaseOrderTypeSummary(): Array<DatabaseSummaryOrderType> {
-    return orderTypes?.map {
-        DatabaseSummaryOrderType(
-            type = it.type.toInt(),
-            name = it.name,
-            count = it.count.toInt()
-        )
-    }?.toTypedArray() ?: arrayOf()
 }

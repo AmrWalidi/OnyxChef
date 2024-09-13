@@ -22,12 +22,16 @@ class OrderAdapter : ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffC
     }
 
 
-    class OrderViewHolder private constructor(val binding: OrderContainerBinding) : RecyclerView.ViewHolder(binding.root) {
+    class OrderViewHolder private constructor(val binding: OrderContainerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
             item: Order
         ) {
             binding.order = item
+            val itemAdapter = ItemAdapter()
+            binding.orderItemList.adapter = itemAdapter
+            itemAdapter.submitList(item.items)
         }
 
         companion object {

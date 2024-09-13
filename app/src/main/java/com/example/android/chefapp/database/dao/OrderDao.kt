@@ -6,9 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.android.chefapp.database.entity.DatabaseOrder
 import com.example.android.chefapp.database.entity.DatabaseOrderItem
-import com.example.android.chefapp.database.entity.DatabaseSummaryItem
-import com.example.android.chefapp.database.entity.DatabaseSummaryOrderState
-import com.example.android.chefapp.database.entity.DatabaseSummaryOrderType
 import com.example.android.chefapp.database.entity.OrderItemCrossRef
 
 @Dao
@@ -32,26 +29,8 @@ interface OrderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllOrderItemCrossRef(vararg crossRef: OrderItemCrossRef)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllSummaryOrderType(vararg entities: DatabaseSummaryOrderType)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllSummaryOrderState(vararg entities: DatabaseSummaryOrderState)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllSummaryOrderItems(vararg entities: DatabaseSummaryItem)
-
     @Query("SELECT * FROM OrderItemCrossRef WHERE itemId = :itemId")
     suspend fun getOrderItemCrossRef(itemId: Int): List<OrderItemCrossRef>
-
-    @Query("SELECT * FROM databasesummaryordertype")
-    suspend fun getSummaryOrderType(): List<DatabaseSummaryOrderType>
-
-    @Query("SELECT * FROM databasesummaryorderstate")
-    suspend fun getSummaryOrderState(): List<DatabaseSummaryOrderState>
-
-    @Query("SELECT * FROM databasesummaryitem")
-    suspend fun getSummaryItems(): List<DatabaseSummaryItem>
 
     @Query("DELETE FROM databaseuser WHERE unit = :id")
     suspend fun delete(id: Int)

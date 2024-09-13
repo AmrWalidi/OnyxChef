@@ -6,9 +6,6 @@ import com.example.android.chefapp.database.dao.OrderDao
 import com.example.android.chefapp.database.dao.UserDao
 import com.example.android.chefapp.database.entity.DatabaseOrder
 import com.example.android.chefapp.database.entity.DatabaseOrderItem
-import com.example.android.chefapp.database.entity.DatabaseSummaryItem
-import com.example.android.chefapp.database.entity.DatabaseSummaryOrderState
-import com.example.android.chefapp.database.entity.DatabaseSummaryOrderType
 import com.example.android.chefapp.database.entity.DatabaseUser
 import com.example.android.chefapp.database.entity.OrderItemCrossRef
 
@@ -17,12 +14,9 @@ import com.example.android.chefapp.database.entity.OrderItemCrossRef
         DatabaseUser::class,
         DatabaseOrder::class,
         DatabaseOrderItem::class,
-        OrderItemCrossRef::class,
-        DatabaseSummaryOrderType::class,
-        DatabaseSummaryOrderState::class,
-        DatabaseSummaryItem::class
+        OrderItemCrossRef::class
     ],
-    version = 7
+    version = 9
 )
 abstract class OnyxChefDatabase : RoomDatabase() {
     abstract val daoUser: UserDao
