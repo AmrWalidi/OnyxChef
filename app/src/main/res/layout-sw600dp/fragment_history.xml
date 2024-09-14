@@ -1,335 +1,410 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/rounded_edges"
-    android:backgroundTint="@color/background"
-    android:padding="3dp"
-    android:paddingHorizontal="25dp"
-    android:paddingVertical="15dp"
-    tools:context=".ui.HistoryFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/history_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/almarai"
-        android:text="@string/history_header"
-        android:textColor="@color/primaryColor"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/history_header"
-        tools:visibility="gone">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="195dp"
-            android:layout_height="133dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/empty_animation" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/almarai"
-            android:text="@string/history_empty"
-            tools:layout_editor_absoluteX="486dp"
-            tools:layout_editor_absoluteY="420dp" />
-    </LinearLayout>
+        <variable
+            name="viewModel"
+            type="com.example.android.chefapp.viewmodel.HistoryViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/history_body"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="13dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="13dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/history_header"
-        tools:visibility="visible">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="@color/background"
+        android:padding="3dp"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="15dp"
+        tools:context=".ui.HistoryFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
-            android:layout_width="354dp"
-            android:layout_height="0dp"
-            android:background="@drawable/rounded_edges"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/history_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/almarai"
+            android:text="@string/history_header"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/history_navbar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/top_round_edges"
-                android:backgroundTint="@color/background"
-                android:orientation="horizontal"
-                android:paddingHorizontal="38dp"
-                android:paddingVertical="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="34dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/almarai"
-                    android:padding="3dp"
-                    android:text="@string/all"
-                    android:textColor="#6A6A6A" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="34dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/almarai"
-                    android:padding="3dp"
-                    android:textColor="#6A6A6A"
-                    tools:text="Done (18)" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="34dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/almarai"
-                    android:padding="3dp"
-                    android:textColor="#6A6A6A"
-                    tools:text="Cancel (4)" />
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="37dp"
-                app:layout_constraintEnd_toEndOf="@+id/history_navbar"
-                app:layout_constraintStart_toStartOf="@+id/history_navbar"
-                app:layout_constraintTop_toBottomOf="@+id/history_navbar">
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:text="@string/order_number"
-                    android:textColor="@color/primaryColor"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView10" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:text="@string/status"
-                    android:textColor="@color/primaryColor"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/history_order_list"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-                tools:itemCount="10"
-                tools:listitem="@layout/order_number_status_list_item" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
-            android:background="@drawable/rounded_edges"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/history_header"
+            tools:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="195dp"
+                android:layout_height="133dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/empty_animation" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/almarai"
+                android:text="@string/history_empty"
+                tools:layout_editor_absoluteX="486dp"
+                tools:layout_editor_absoluteY="420dp" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/history_body"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="13dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/history_header"
+            tools:visibility="visible">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/top_round_edges"
-                android:backgroundTint="#D4FFCC"
-                android:paddingHorizontal="10dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/constraintLayout4"
+                android:layout_width="354dp"
+                android:layout_height="0dp"
+                android:background="@drawable/rounded_edges"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
 
                 <LinearLayout
-                    android:id="@+id/stateContainer"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/history_navbar"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/top_round_edges"
+                    android:backgroundTint="@color/background"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="38dp"
+                    android:paddingVertical="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/stateIcon"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/status_icon"
-                        app:srcCompat="@drawable/ic_new" />
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="34dp"
+                        android:gravity="center_horizontal"
+                        android:onClick="@{() -> viewModel.selectOrderType(1)}"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/orderStateText"
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="29dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/almarai"
+                            android:padding="3dp"
+                            android:text="@string/all"
+                            android:textColor="#6A6A6A" />
+
+                        <View
+                            android:id="@+id/all_active"
+                            android:layout_width="29dp"
+                            android:layout_height="7dp"
+                            android:background="@drawable/rounded_edges"
+                            android:backgroundTint="@color/primaryColor" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:textColor="@color/new_color"
-                        android:textSize="12sp"
-                        tools:text="New" />
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="34dp"
+                        android:gravity="center_horizontal"
+                        android:onClick="@{() -> viewModel.selectOrderType(2)}"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/almarai"
+                            android:padding="3dp"
+                            android:text="@{@string/done_orders(viewModel.doneOrders.size)}"
+                            android:textColor="#6A6A6A"
+                            tools:text="Done (8)" />
+
+                        <View
+                            android:id="@+id/done_active"
+                            android:layout_width="29dp"
+                            android:layout_height="7dp"
+                            android:background="@drawable/rounded_edges"
+                            android:backgroundTint="@color/primaryColor"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="34dp"
+                        android:gravity="center_horizontal"
+                        android:onClick="@{() -> viewModel.selectOrderType(3)}"
+                        android:orientation="vertical">
+                        >
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/almarai"
+                            android:padding="3dp"
+                            android:text="@{@string/cancel_orders(viewModel.canceledOrders.size)}"
+                            android:textColor="#6A6A6A"
+                            tools:text="Cancel (4)" />
+
+                        <View
+                            android:id="@+id/canceled_active"
+                            android:layout_width="29dp"
+                            android:layout_height="7dp"
+                            android:background="@drawable/rounded_edges"
+                            android:backgroundTint="@color/primaryColor"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/orderTime"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/almarai"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="37dp"
+                    app:layout_constraintEnd_toEndOf="@+id/history_navbar"
+                    app:layout_constraintStart_toStartOf="@+id/history_navbar"
+                    app:layout_constraintTop_toBottomOf="@+id/history_navbar">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="@string/order_number"
+                        android:textColor="@color/primaryColor"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="@string/status"
+                        android:textColor="@color/primaryColor"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/history_order_list"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="10:48 AM" />
-
-                <TextView
-                    android:id="@+id/orderNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/almarai"
-                    android:textColor="@color/new_color"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/stateContainer"
-                    app:layout_constraintTop_toBottomOf="@id/stateContainer"
-                    tools:text="# Order No 645263" />
-
-                <TextView
-                    android:id="@+id/orderTypeHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/almarai"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/orderType"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/orderNumber"
-                    tools:text="Order type" />
-
-                <TextView
-                    android:id="@+id/orderType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/orderTypeHeader"
-                    tools:text="Dine in" />
-
-                <TextView
-                    android:id="@+id/timeTakenHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/timeTaken"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="Time taken" />
-
-                <TextView
-                    android:id="@+id/timeTaken"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almarai"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/timeTakenHeader"
-                    tools:text="00 : 00" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/order_number_status_list_item" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/orderActionButton"
-                android:layout_width="216dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/primaryColor"
-                android:fontFamily="@font/almarai"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:icon="@drawable/ic_recall"
-                app:iconGravity="textStart"
-                app:iconPadding="16dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/order_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/rounded_edges"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Recall" />
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/order_item_list"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/orderActionButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/top_round_edges"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:setStatus="@{viewModel.selectedOrder.status}">
+
+
+                    <LinearLayout
+                        android:id="@+id/stateContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="1dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/stateIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/status_icon"
+                            app:setStatus="@{viewModel.selectedOrder.status}" />
+
+                        <TextView
+                            android:id="@+id/orderStateText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:text="@{viewModel.selectedOrder.status}"
+                            android:textColor="@color/new_color"
+                            android:textSize="12sp"
+                            app:setStatus="@{viewModel.selectedOrder.status}"
+                            tools:text="New" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/orderTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/almarai"
+                        android:text="@{viewModel.selectedOrder.time}"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="10:48 AM" />
+
+                    <TextView
+                        android:id="@+id/orderNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/almarai"
+                        android:text="@{@string/order_no(viewModel.selectedOrder.serial)}"
+                        android:textColor="@color/new_color"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@id/stateContainer"
+                        app:layout_constraintTop_toBottomOf="@id/stateContainer"
+                        app:setStatus="@{viewModel.selectedOrder.status}"
+                        tools:text="# Order No 645263" />
+
+                    <TextView
+                        android:id="@+id/orderTypeHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/almarai"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/orderType"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/orderNumber"
+                        android:text="@string/order_type" />
+
+                    <TextView
+                        android:id="@+id/orderType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="@{viewModel.selectedOrder.type}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/orderTypeHeader"
+                        tools:text="Dine in" />
+
+                    <TextView
+                        android:id="@+id/timeTakenHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/timeTaken"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text="@string/time_taken" />
+
+                    <TextView
+                        android:id="@+id/timeTaken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/almarai"
+                        android:text="@{viewModel.selectedOrder.passedTime}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/timeTakenHeader"
+                        tools:text="00 : 00" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/orderActionButton"
+                    android:layout_width="216dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:backgroundTint="@color/primaryColor"
+                    android:fontFamily="@font/almarai"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:icon="@drawable/ic_recall"
+                    app:iconGravity="textStart"
+                    app:iconPadding="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Recall" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/order_item_list"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/orderActionButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

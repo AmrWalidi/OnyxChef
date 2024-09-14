@@ -19,7 +19,7 @@ fun ApiOrderItemSummary.asDomainSummaryItems(): List<SummaryItems> {
         SummaryItems(
             code = it.code.toInt(),
             name = it.name,
-            quantity = it.quantity.toInt()
+            quantity = it.quantity
         )
     } ?: listOf()
 }

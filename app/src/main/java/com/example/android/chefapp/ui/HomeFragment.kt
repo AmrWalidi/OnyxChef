@@ -1,15 +1,19 @@
 package com.example.android.chefapp.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.chefapp.R
 import com.example.android.chefapp.databinding.FragmentHomeBinding
+import com.example.android.chefapp.databinding.LogoutPanelBinding
 import com.example.android.chefapp.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -86,6 +90,49 @@ class HomeFragment : Fragment() {
                 commit()
             }
         }
+
+        val dialog = showPopup(viewModel)
+
+        viewModel.logoutPanel.observe(viewLifecycleOwner) {
+            if (it) {
+                dialog.show()
+            } else {
+                dialog.dismiss()
+            }
+        }
+        viewModel.logout.observe(viewLifecycleOwner) {
+            if (it) {
+                dialog.dismiss()
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            }
+        }
         return binding.root
     }
+
+    private fun showPopup(viewModel: HomeViewModel): Dialog {
+        val dialog = Dialog(requireContext())
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        val binding: LogoutPanelBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(requireContext()),
+            R.layout.logout_panel,
+            null,
+            false
+        )
+
+        dialog.setContentView(binding.root)
+
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        dialog.setCancelable(true)
+
+        binding.viewModel = viewModel
+
+        return dialog
+    }
+
 }

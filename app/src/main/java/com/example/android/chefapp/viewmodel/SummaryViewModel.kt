@@ -35,7 +35,7 @@ class SummaryViewModel(application: Application, val terminal: Int?, val branch:
     init {
         getOrderTypes()
         getOrderStates()
-        getItems()
+//        getItems()
     }
 
     private fun getOrderTypes() {

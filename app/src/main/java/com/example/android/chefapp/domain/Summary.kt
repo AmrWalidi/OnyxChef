@@ -7,4 +7,4 @@ data class SummaryOrderState(
     val count: Int,
 )
 
-data class SummaryItems(val code: Int, val name: String, val quantity: Int)
+data class SummaryItems(val code: Int, val name: String, val quantity: String)

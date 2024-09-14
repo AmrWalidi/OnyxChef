@@ -26,17 +26,35 @@ class HomeViewModel(application: Application, u: User) : AndroidViewModel(applic
     val fragmentNumber: LiveData<Int>
         get() = _fragmentNumber
 
+    private val _logoutPanel = MutableLiveData(false)
+    val logoutPanel : LiveData<Boolean>
+        get() = _logoutPanel
+
+    private val _logout = MutableLiveData(false)
+    val logout : LiveData<Boolean>
+        get() = _logout
+
 
     fun navigateThroughFragments(fragment: Int) {
         _fragmentNumber.value = fragment
     }
 
+    fun popInLogout(){
+        _logoutPanel.value = true
+    }
+
+    fun popOutLogout(){
+        _logoutPanel.value = false
+    }
 
     fun logout() {
+        _logout.value = true
         viewModelScope.launch {
             _user.value?.let { repo.logout(it) }
         }
     }
+
+
 
 
     class Factory(val app: Application, val user: User) : ViewModelProvider.Factory {

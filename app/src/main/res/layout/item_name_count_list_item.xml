@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item"
-        android:layout_width="396dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_edges"
@@ -34,7 +34,6 @@
             tools:text="Green Salad" />
 
         <TextView
-            android:id="@+id/items_count_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/almarai"
