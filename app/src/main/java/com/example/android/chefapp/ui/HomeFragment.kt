@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.languageButton.setOnClickListener {
-            languagePopup(viewModel)
+            languagePopup()
         }
 
         return binding.root
@@ -141,7 +141,7 @@ class HomeFragment : Fragment() {
         return dialog
     }
 
-    private fun languagePopup(viewModel: HomeViewModel) {
+    private fun languagePopup() {
         val dialog = Dialog(requireContext())
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
