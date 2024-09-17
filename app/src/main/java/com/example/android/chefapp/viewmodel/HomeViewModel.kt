@@ -27,23 +27,22 @@ class HomeViewModel(application: Application, u: User) : AndroidViewModel(applic
         get() = _fragmentNumber
 
     private val _logoutPanel = MutableLiveData(false)
-    val logoutPanel : LiveData<Boolean>
+    val logoutPanel: LiveData<Boolean>
         get() = _logoutPanel
 
     private val _logout = MutableLiveData(false)
-    val logout : LiveData<Boolean>
+    val logout: LiveData<Boolean>
         get() = _logout
-
 
     fun navigateThroughFragments(fragment: Int) {
         _fragmentNumber.value = fragment
     }
 
-    fun popInLogout(){
+    fun popInLogout() {
         _logoutPanel.value = true
     }
 
-    fun popOutLogout(){
+    fun popOutLogout() {
         _logoutPanel.value = false
     }
 
@@ -53,9 +52,6 @@ class HomeViewModel(application: Application, u: User) : AndroidViewModel(applic
             _user.value?.let { repo.logout(it) }
         }
     }
-
-
-
 
     class Factory(val app: Application, val user: User) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
