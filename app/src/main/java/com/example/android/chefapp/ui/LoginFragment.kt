@@ -29,9 +29,7 @@ class LoginFragment : Fragment() {
     ): View {
         val binding: FragmentLoginBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-
         binding.viewModel = viewModel
-
         viewModel.password.observe(viewLifecycleOwner) { newPassword ->
             var childrenCount = 1
             binding.pinList.children.forEach { child ->
@@ -48,7 +46,6 @@ class LoginFragment : Fragment() {
                 viewModel.login()
             }
         }
-
         viewModel.valid.observe(viewLifecycleOwner) {
             if (!it) {
                 binding.errorMessage.text = getString(R.string.pin_error_message)
@@ -56,18 +53,12 @@ class LoginFragment : Fragment() {
             } else {
                 viewModel.user.value?.let { user ->
                     findNavController().navigate(
-                        LoginFragmentDirections.actionLoginFragmentToHomeFragment(
-                            user
-                        )
+                        LoginFragmentDirections.actionLoginFragmentToHomeFragment(user)
                     )
                 }
-
             }
         }
-
         binding.lifecycleOwner = this
-
         return binding.root
     }
-
 }

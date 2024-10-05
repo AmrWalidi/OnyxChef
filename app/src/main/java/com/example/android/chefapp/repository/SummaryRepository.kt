@@ -26,16 +26,13 @@ class SummaryRepository(val database: OnyxChefDatabase) {
                 )
             )
         }
-
         if (orderTypeResponse is ApiSuccess) {
             return orderTypeResponse.body.data.asDomainOrderType()
         }
         return listOf()
     }
 
-
     suspend fun getOrderState(terminal: Int?, branch: Int?): List<SummaryOrderState> {
-
         val orderStatesResponse = handleApi {
             OnyxRmsApi.orderRetrofitService.getOrderStateSummary(
                 ApiRequest(
@@ -46,13 +43,11 @@ class SummaryRepository(val database: OnyxChefDatabase) {
                 )
             )
         }
-
         if (orderStatesResponse is ApiSuccess) {
             return orderStatesResponse.body.data.asDomainOrderState()
         }
         return listOf()
     }
-
 
     suspend fun getSummaryItems(terminal: Int?, branch: Int?): List<SummaryItems> {
         val itemSummaryResponse = handleApi {
@@ -65,10 +60,8 @@ class SummaryRepository(val database: OnyxChefDatabase) {
                 )
             )
         }
-
         if (itemSummaryResponse is ApiSuccess) {
             return itemSummaryResponse.body.data.asDomainSummaryItems()
-
         }
         return listOf()
     }

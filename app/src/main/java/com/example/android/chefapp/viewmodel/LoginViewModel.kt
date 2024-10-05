@@ -29,12 +29,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val valid: LiveData<Boolean>
         get() = _valid
 
-    init{
-        viewModelScope.launch {
-            _user.value = repo.getCurrentUser()
-        }
+    init {
+        viewModelScope.launch { _user.value = repo.getCurrentUser() }
     }
-
 
     fun pinOnClick(number: Int) {
         _password.value += number.toString()
@@ -50,6 +47,13 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             _valid.value = _user.value != null
             _password.value = ""
         }
+    }
+
+    fun tryDemo() {
+        _user.value = User("Ahmed-1", "17-10-2024", 1, "English", 1, 1)
+        _valid.value = true
+        _password.value = ""
+
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

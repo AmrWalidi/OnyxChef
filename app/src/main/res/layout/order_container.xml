@@ -21,6 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/top_round_edges"
+            android:backgroundTint="@color/new_background_color"
             android:paddingHorizontal="10dp"
             android:paddingTop="15dp"
             android:paddingBottom="10dp"
@@ -46,7 +47,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:contentDescription="@string/order_status"
-                    app:setStatus="@{order.status}" />
+                    app:setStatus="@{order.status}"
+                    tools:src="@drawable/ic_new" />
 
                 <TextView
                     android:id="@+id/orderStateText"
@@ -69,7 +71,8 @@
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10:45 AM" />
 
             <TextView
                 android:id="@+id/orderNumber"
@@ -82,7 +85,8 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/stateContainer"
                 app:layout_constraintTop_toBottomOf="@id/stateContainer"
-                app:setStatus="@{order.status}" />
+                app:setStatus="@{order.status}"
+                tools:text="# Order No: 34754" />
 
             <TextView
                 android:id="@+id/orderTypeHeader"
@@ -105,7 +109,8 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Dine in" />
 
             <TextView
                 android:id="@+id/timeTakenHeader"
@@ -127,7 +132,8 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/divider6" />
+                app:layout_constraintStart_toEndOf="@+id/divider6"
+                tools:text="6:45" />
 
             <View
                 android:id="@+id/divider6"

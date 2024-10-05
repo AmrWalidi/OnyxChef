@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28.5dp"
                 android:fontFamily="@font/almarai"
-                android:text="@{viewModel.user.username}"
+                android:text="Ahmed-1"
                 android:textColor="#075060"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/almarai"
-                android:text="@{viewModel.user.loginDate}"
+                android:text="17-5-2022"
                 app:layout_constraintBottom_toBottomOf="@+id/mainChef"
                 app:layout_constraintStart_toStartOf="@+id/username"
                 app:layout_constraintTop_toBottomOf="@+id/username"
@@ -234,7 +234,8 @@
             app:layout_constraintStart_toStartOf="@id/paner"
             app:layout_constraintTop_toBottomOf="@+id/paner"
             app:layout_constraintVertical_bias="0.0"
-            tools:layout="@layout/fragment_orders" />
+            tools:layout="@layout/fragment_orders"
+            tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/side_bar"

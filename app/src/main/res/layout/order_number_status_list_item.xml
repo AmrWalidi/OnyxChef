@@ -15,11 +15,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:onClick="@{() -> viewModel.selectOrder(order.no)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="#FCFCFC"
+        android:onClick="@{() -> viewModel.selectOrder(order.no)}"
         android:paddingStart="14dp"
         android:paddingTop="19dp"
         android:paddingEnd="28dp"
@@ -58,6 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView13"
             app:strokeColor="#112469"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:text="Ready" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

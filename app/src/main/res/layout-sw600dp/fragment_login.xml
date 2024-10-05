@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.LoginFragment">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.example.android.chefapp.viewmodel.LoginViewModel" />
@@ -289,6 +291,7 @@
                 android:layout_marginVertical="4dp"
                 android:backgroundTint="@android:color/transparent"
                 android:fontFamily="@font/almarai"
+                android:onClick="@{() -> viewModel.tryDemo()}"
                 android:text="@string/try_demo"
                 android:textColor="#075060"
                 android:textSize="16sp"
