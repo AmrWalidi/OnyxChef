@@ -34,6 +34,14 @@ class HomeViewModel(application: Application, u: User) : AndroidViewModel(applic
     val logout: LiveData<Boolean>
         get() = _logout
 
+    private var _language: Int = 0
+    val language: Int
+        get() = _language
+
+    private val _savedLanguage = MutableLiveData<Boolean>()
+    val savedLanguage: LiveData<Boolean>
+        get() = _savedLanguage
+
     fun navigateThroughFragments(fragment: Int) {
         _fragmentNumber.value = fragment
     }
@@ -44,6 +52,19 @@ class HomeViewModel(application: Application, u: User) : AndroidViewModel(applic
 
     fun popOutLogout() {
         _logoutPanel.value = false
+    }
+
+    fun changeLanguage(lang: Int) {
+        _language = lang
+    }
+
+
+    fun saveLanguage() {
+        _savedLanguage.value = true
+    }
+
+    fun unsavedLanguage() {
+        _savedLanguage.value = false
     }
 
     fun logout() {

@@ -1,96 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_edges"
-    android:paddingStart="42dp"
-    android:paddingTop="29dp"
-    android:paddingEnd="31dp"
-    android:paddingBottom="35dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/imageView6"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.android.chefapp.viewmodel.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_x"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/rounded_edges"
+        android:paddingStart="42dp"
+        android:paddingTop="29dp"
+        android:paddingEnd="31dp"
+        android:paddingBottom="35dp">
 
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/application_settings"
-        android:textColor="@color/primaryColor"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27">
-
-
-        <EditText
-            android:id="@+id/input_unit"
-            android:layout_width="382dp"
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="46dp"
-            android:background="@drawable/input_background"
+            android:onClick="@{() -> viewModel.dismissSettingPanel()}"
+            android:src="@drawable/ic_x"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            android:hint="@string/unit"
-            android:textColorHint="@color/primaryColor" />
-
-        <EditText
-            android:id="@+id/input_branch"
-            android:layout_width="382dp"
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="46dp"
-            android:background="@drawable/input_background"
-            android:hint="@string/branch"
-            android:textColorHint="@color/primaryColor" />
+            android:fontFamily="@font/montserrat"
+            android:text="@string/application_settings"
+            android:textColor="@color/primaryColor"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/input_url"
-            android:layout_width="382dp"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="46dp"
-            android:background="@drawable/input_background"
-            android:hint="@string/url"
-            android:textColorHint="@color/primaryColor" />
+            android:layout_marginTop="63dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView27">
 
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="215dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="47dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/cancel"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+            <EditText
+                android:id="@+id/input_unit"
+                android:layout_width="382dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="46dp"
+                android:background="@drawable/input_background"
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="215dp"
-        android:layout_height="53dp"
-        android:backgroundTint="@color/primaryColor"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/save"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button2" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:hint="@string/unit"
+                android:textColorHint="@color/primaryColor" />
+
+            <EditText
+                android:id="@+id/input_branch"
+                android:layout_width="382dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="46dp"
+                android:background="@drawable/input_background"
+                android:hint="@string/branch"
+                android:textColorHint="@color/primaryColor" />
+
+            <EditText
+                android:id="@+id/input_url"
+                android:layout_width="382dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="46dp"
+                android:background="@drawable/input_background"
+                android:hint="@string/url"
+                android:textColorHint="@color/primaryColor" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="215dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="47dp"
+            android:backgroundTint="@color/white"
+            android:onClick="@{() -> viewModel.dismissSettingPanel()}"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="215dp"
+            android:layout_height="53dp"
+            android:backgroundTint="@color/primaryColor"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/save"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

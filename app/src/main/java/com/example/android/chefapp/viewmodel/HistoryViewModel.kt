@@ -19,7 +19,7 @@ class HistoryViewModel(application: Application, val terminal: Int?, val branch:
 
     private var allOrders = listOf<Order>()
 
-    private val _orders = MutableLiveData<List<Order>>(
+    private val _orders = MutableLiveData(
         listOf(
             Order(
                 no = 1,

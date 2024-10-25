@@ -64,7 +64,7 @@ class SummaryFragment : Fragment() {
         }
 
         viewModel.orderStates.observe(viewLifecycleOwner) {
-            if(it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 binding.all0rderNumber.text = it[0].count.toString()
                 binding.cancelOrderNumber.text = it[1].count.toString()
                 binding.delayedOrderNumber.text = it[2].count.toString()
@@ -73,7 +73,7 @@ class SummaryFragment : Fragment() {
         }
 
         viewModel.orderType.observe(viewLifecycleOwner) {
-            if(it.isNotEmpty()) {
+            if (it.isNotEmpty()) {
                 binding.dineInNumber.text = it[0].count.toString()
                 binding.takeAwayNumber.text = it[1].count.toString()
                 binding.delivaryOrderNumber.text = it[2].count.toString()

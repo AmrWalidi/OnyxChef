@@ -298,43 +298,6 @@
                 app:strokeColor="#075060"
                 app:strokeWidth="1dp" />
 
-            <LinearLayout
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button6"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#F7F7F7"
-                    android:fontFamily="@font/almarai"
-                    android:text="@string/settings"
-                    android:textColor="#075060"
-                    android:textSize="16sp"
-                    app:icon="@drawable/ic_settings"
-                    app:iconTint="@color/primaryColor" />
-
-                <Button
-                    android:id="@+id/button7"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#F7F7F7"
-                    android:fontFamily="@font/almarai"
-                    android:text="@string/language"
-                    android:textColor="#075060"
-                    android:textSize="16sp"
-                    app:icon="@drawable/world"
-                    app:iconTint="@color/primaryColor" />
-            </LinearLayout>
-
-
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -371,5 +334,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/onxpos_logo"
                 app:srcCompat="@drawable/chef" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:onClick="@{() -> viewModel.showSettingPanel()}"
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_settings" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

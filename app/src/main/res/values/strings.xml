@@ -3,7 +3,6 @@
     <string name="logo_name">onxpos logo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_in">Log in</string>
-    <string name="please_enter_pin">Please enter your PIN code to log in</string>
     <string name="try_demo">Try Demo</string>
     <string name="settings">Settings</string>
     <string name="language">Language</string>
@@ -11,7 +10,7 @@
     <string name="no_order_yet">No order yet.</string>
     <string name="next_button">next button</string>
     <string name="previous_button">previous button</string>
-    <string name="history_header">History</string>
+    <string name="history">History</string>
     <string name="history_empty">Your history is empty</string>
     <string name="all">All</string>
     <string name="order_number">Order Number</string>
@@ -23,7 +22,7 @@
     <string name="order_type">Order type</string>
     <string name="take_away">Take-away</string>
     <string name="dine_in">Dine in</string>
-    <string name="delivary">Delivary</string>
+    <string name="delivery">Delivery</string>
     <string name="items">Items</string>
     <string name="Item_name">Item name</string>
     <string name="count">Count</string>
@@ -41,7 +40,6 @@
     <string name="application_settings">Application settings</string>
     <string name="unit">Unit</string>
     <string name="branch">Branch</string>
-    <string name="url">URL</string>
     <string name="pin_error_message">wrong pin</string>
     <string name="pin">pin</string>
     <string name="one">1</string>
@@ -65,4 +63,9 @@
     <string name="item_detail">%1$s x %2$s</string>
     <string name="done_orders">Done (%1$d)</string>
     <string name="cancel_orders">Cancel (%1$d)</string>
+    <string name="please_enter_pin">Please enter your PIN code to log in</string>
+    <string name="url">URL</string>
+    <string name="orders">Orders</string>
+    <string name="new_state_name">New</string>
+    <string name="changed">Changed</string>
 </resources>

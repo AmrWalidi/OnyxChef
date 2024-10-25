@@ -1,6 +1,7 @@
 package com.example.android.chefapp.ui
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.android.chefapp.databinding.FragmentHomeBinding
 import com.example.android.chefapp.databinding.LanguageSelectionPanelBinding
 import com.example.android.chefapp.databinding.LogoutPanelBinding
 import com.example.android.chefapp.viewmodel.HomeViewModel
+import java.util.Locale
 
 
 class HomeFragment : Fragment() {
@@ -35,6 +37,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val sharedPrefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val languageCode = sharedPrefs.getString("language_code", "en")
+        if (languageCode != null) changeAppLanguage(languageCode)
 
         val binding: FragmentHomeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
@@ -109,11 +114,38 @@ class HomeFragment : Fragment() {
         }
 
         binding.languageButton.setOnClickListener {
-            languagePopup()
+            languagePopup(viewModel)
+        }
+        viewModel.savedLanguage.observe(viewLifecycleOwner) {
+            if (it) {
+                when (viewModel.language) {
+                    1 -> {
+                        changeAppLanguage("ar")
+                        sharedPrefs.edit().putString("language_code", "ar").apply()
+                        requireActivity().recreate()
+                    }
+
+                    2 -> {
+                        changeAppLanguage("en")
+                        sharedPrefs.edit().putString("language_code", "en").apply()
+                        requireActivity().recreate()
+                    }
+
+                    3 -> {
+                        changeAppLanguage("fr")
+                        sharedPrefs.edit().putString("language_code", "fr").apply()
+                        requireActivity().recreate()
+                    }
+
+                }
+                viewModel.unsavedLanguage()
+            }
         }
 
+        binding.lifecycleOwner = this
         return binding.root
     }
+
 
     private fun getLogoutDialog(viewModel: HomeViewModel): Dialog {
         val dialog = Dialog(requireContext())
@@ -141,7 +173,8 @@ class HomeFragment : Fragment() {
         return dialog
     }
 
-    private fun languagePopup() {
+
+    private fun languagePopup(viewModel: HomeViewModel) {
         val dialog = Dialog(requireContext())
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -162,8 +195,20 @@ class HomeFragment : Fragment() {
 
         dialog.setCancelable(true)
 
+        binding.viewmodel = viewModel
+
         dialog.show()
 
     }
 
+    private fun changeAppLanguage(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+
+        val resources = requireContext().resources
+        val config = resources.configuration
+        config.setLocale(locale)
+
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
 }

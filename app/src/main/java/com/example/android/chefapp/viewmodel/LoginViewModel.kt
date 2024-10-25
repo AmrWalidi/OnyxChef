@@ -29,6 +29,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val valid: LiveData<Boolean>
         get() = _valid
 
+    private val _setting = MutableLiveData<Boolean>()
+    val setting: LiveData<Boolean>
+        get() = _setting
+
     init {
         viewModelScope.launch { _user.value = repo.getCurrentUser() }
     }
@@ -47,6 +51,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             _valid.value = _user.value != null
             _password.value = ""
         }
+    }
+
+    fun showSettingPanel() {
+        _setting.value = true
+    }
+
+    fun dismissSettingPanel() {
+        _setting.value = false
     }
 
     fun tryDemo() {
