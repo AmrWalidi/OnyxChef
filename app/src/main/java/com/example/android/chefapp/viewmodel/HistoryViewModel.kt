@@ -49,7 +49,7 @@ class HistoryViewModel(application: Application, val terminal: Int?, val branch:
                 passedTime = "5:44",
                 items = listOf(
                     OrderItem(
-                        name = "",
+                        name = "Pizza",
                         quantity = "4",
                         status = "New"
                     )

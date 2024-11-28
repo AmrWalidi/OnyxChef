@@ -42,6 +42,10 @@ class OrdersViewModel(app: Application, private val branch: Int?, private val te
     val currentPage: LiveData<Int>
         get() = _currentPage
 
+    init {
+        refresh()
+    }
+
 
     fun getOrders() {
         viewModelScope.launch {
@@ -51,34 +55,27 @@ class OrdersViewModel(app: Application, private val branch: Int?, private val te
 
     private suspend fun getSavedOrders() {
         _orders.value = _currentPage.value?.let { repo.getOrders(it - 1) }
-        if (_orders.value?.isEmpty() == true) {
-            refresh()
-        } else {
-            getOrdersNumbers()
-        }
     }
 
     private suspend fun getOrdersNumbers() {
         _ordersNumber.value = repo.getOrdersNumber()
-        if (_ordersNumber.value == 0) {
-            _ordersNext.value = 0
-            _totalPage.value = 1
-        } else {
+        if (_ordersNumber.value != 0) {
+            if (_ordersNumber.value!! > 4) {
+                _ordersNext.value = _ordersNumber.value?.minus(4)
+            }
             if (_ordersNumber.value!!.mod(4) == 0) {
                 _totalPage.value = _ordersNumber.value!!.div(4)
-                _ordersNext.value = _ordersNumber.value!! - 4
             } else {
                 _totalPage.value = _ordersNumber.value!!.div(4) + 1
             }
-            _ordersNext.value = _ordersNumber.value!! - 4
         }
-        _currentPage.value = 1
-        _ordersPrev.value = 0
+
     }
 
     fun refresh() {
         viewModelScope.launch {
             if (refreshOrders() != 0) {
+                getOrdersNumbers()
                 getSavedOrders()
             } else {
                 reset()
@@ -100,13 +97,15 @@ class OrdersViewModel(app: Application, private val branch: Int?, private val te
 
     fun nextPage() {
         if (_ordersNext.value != 0) {
+            _ordersPrev.value = _ordersPrev.value?.plus(4)
+            _currentPage.value = _currentPage.value?.plus(1)
             if (_ordersNext.value!! <= 4) {
                 _ordersNext.value = 0
                 _currentPage.value = _totalPage.value
             } else {
-                _ordersNext.value = _ordersNext.value?.minus(4)
+                _ordersNext.value = _currentPage.value?.times(4)
+                    ?.let { _ordersNumber.value?.minus(it) }
             }
-            _ordersPrev.value = _ordersPrev.value?.plus(4)
         }
     }
 

@@ -33,9 +33,7 @@ class OrdersRepository(val database: OnyxChefDatabase) {
                 type = order.type,
                 status = order.status,
                 passedTime = order.passedTime,
-                items = orderItemsCrossRef.filter {
-                    it.orderId == order.orderId
-                }.map { ref ->
+                items = orderItemsCrossRef.map { ref ->
                     OrderItem(
                         name = ref.itemId,
                         quantity = ref.quantity,

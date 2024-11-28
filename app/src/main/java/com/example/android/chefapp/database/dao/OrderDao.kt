@@ -29,8 +29,8 @@ interface OrderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllOrderItemCrossRef(vararg crossRef: OrderItemCrossRef)
 
-    @Query("SELECT * FROM OrderItemCrossRef WHERE itemId = :itemId")
-    suspend fun getOrderItemCrossRef(itemId: Int): List<OrderItemCrossRef>
+    @Query("SELECT * FROM OrderItemCrossRef WHERE orderId = :orderId")
+    suspend fun getOrderItemCrossRef(orderId: Int): List<OrderItemCrossRef>
 
     @Query("DELETE FROM databaseuser WHERE unit = :id")
     suspend fun delete(id: Int)
